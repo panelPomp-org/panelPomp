@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "panelPomp",
     "section": "",
-    "text": "View on GitHub Download ZIP Download TAR Ball\n\n\nPackage Description\nTools for working with longitudinal or panel POMPs, i.e., with Partially Observed Markov Processes (AKA state-space models, stochastic dynamical systems) involving multiple, independent units (or individuals) for each of which (potentially multivariate) time series data is available. The basic idea driving panelPomp is to apply to a collection of units (or individuals) some of the pomp package facilities for implementing POMP models, simulating them, and fitting them to time series data.\n\n\nAuthors and Contributors\nAuthors: Carles Breto (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu)."
+    "text": "Package Description\nTools for working with longitudinal or panel POMPs, i.e., with Partially Observed Markov Processes (AKA state-space models, stochastic dynamical systems) involving multiple, independent units (or individuals) for each of which (potentially multivariate) time series data is available. The basic idea driving panelPomp is to apply to a collection of units (or individuals) some of the pomp package facilities for implementing POMP models, simulating them, and fitting them to time series data.\n\n\nAuthors and Contributors\nAuthors: Carles Breto (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu)."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "panelPomp",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Package Description\nTools for working with longitudinal or panel POMPs, i.e., with Partially Observed Markov Processes (AKA state-space models, stochastic dynamical systems) involving multiple, independent units (or individuals) for each of which (potentially multivariate) time series data is available. The basic idea driving panelPomp is to apply to a collection of units (or individuals) some of the pomp package facilities for implementing POMP models, simulating them, and fitting them to time series data.\n\n\nAuthors and Contributors\nAuthors: Carles Breto (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu)."
   }
 ]
