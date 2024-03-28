@@ -7,6 +7,13 @@
     "text": "Authors\nCarles Breto (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu)\n\n\nPackage Description\nTools for working with longitudinal or panel POMPs, i.e., with Partially Observed Markov Processes (AKA state-space models, stochastic dynamical systems) involving multiple, independent units (or individuals) for each of which (potentially multivariate) time series data is available. The basic idea driving panelPomp is to apply to a collection of units (or individuals) some of the pomp package facilities for implementing POMP models, simulating them, and fitting them to time series data."
   },
   {
+    "objectID": "todo.html",
+    "href": "todo.html",
+    "title": "Website TODO list",
+    "section": "",
+    "text": "Create a bibliography page with all citations to the package (add to website side-bar)\nCheck that the package TAR Ball and ZIP file also get created in the GitHub Action so that these files will be up-to-date if there are any changes to the packages. I’m worried that the current links will be to old versions of the package.\nCreate Vignettes and non-Vignette examples for the package, link to them in the sidebar.\nUpdate the index page\nImprove the website documentation in the testpkg website, so that this is all reproducible and possibly can be extended to spatPomp and/or pomp."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "panelPomp",
