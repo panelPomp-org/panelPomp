@@ -120,14 +120,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://kingaa.github.io/pomp"><i class="bi bi-link-45deg"></i>pomp package</a></li><li><a href="https://kidusasfaw.github.io/spatPomp"><i class="bi bi-link-45deg"></i>spatPomp package</a></li><li><a href="https://github.com/cbreto/panelPomp/zipball/master"><i class="bi bi-file-zip"></i>Download ZIP</a></li><li><a href="https://github.com/cbreto/panelPomp/tarball/master"><i class="bi bi-file-zip"></i>Download TAR Ball</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/cbreto/panelPomp"><i class="bi bi-github"></i>GitHub Source</a></li></ul></div></div>
+    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://kingaa.github.io/pomp"><i class="bi bi-link"></i>pomp package</a></li><li><a href="https://kidusasfaw.github.io/spatPomp"><i class="bi bi-link"></i>spatPomp package</a></li><li><a href="https://github.com/cbreto/panelPomp/zipball/master"><i class="bi bi-file-zip"></i>Download ZIP</a></li><li><a href="https://github.com/cbreto/panelPomp/tarball/master"><i class="bi bi-file-zip"></i>Download TAR Ball</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/cbreto/panelPomp"><i class="bi bi-github"></i>GitHub Source</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">panelPomp</h1>
-<p class="subtitle lead">R package for statistical inference using panel POMPs (Partially Observed Markov Processes)</p>
+<p class="subtitle lead">Inference for Panel Partially Observed Markov Processes</p>
 </div>
 
 
@@ -144,13 +144,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="package-description" class="level4">
-<h4 class="anchored" data-anchor-id="package-description">Package Description</h4>
-<p>Tools for working with longitudinal or panel POMPs, i.e., with Partially Observed Markov Processes (AKA state-space models, stochastic dynamical systems) involving multiple, independent units (or individuals) for each of which (potentially multivariate) time series data is available. The basic idea driving <code>panelPomp</code> is to apply to a collection of units (or individuals) some of the <a href="https://kingaa.github.io/pomp/"><code>pomp</code> package</a> facilities for implementing POMP models, simulating them, and fitting them to time series data.</p>
-</section>
 <section id="authors-and-contributors" class="level4">
 <h4 class="anchored" data-anchor-id="authors-and-contributors">Authors and Contributors</h4>
-<p>Authors: Carles Breto (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu).</p>
+<p>Carles Breto (carles.breto@uv.es) [aut, cre], Edward L. Ionides [aut], Aaron A. King [aut], and Jesse Wheeler (jeswheel@umich.edu) [aut].</p>
+</section>
+<section id="version" class="level4">
+<h4 class="anchored" data-anchor-id="version">Version</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/cbreto/panelPomp">GitHub</a></td>
+<td style="text-align: left;">1.1.0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cloud.r-project.org/web/packages/panelPomp/index.html">CRAN</a></td>
+<td style="text-align: left;">1.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="package-description" class="level4">
+<h4 class="anchored" data-anchor-id="package-description">Package Description</h4>
+<p>Data analysis based on panel partially-observed Markov process (PanelPOMP) models. To implement such models, simulate them and fit them to panel data, ‘panelPomp’ extends some of the facilities provided for time series data by the ‘pomp’ package. Implemented methods include filtering (panel particle filtering) and maximum likelihood estimation (Panel Iterated Filtering) as proposed in Breto, Ionides and King (2020) “Panel Data Analysis via Mechanistic Models” <a href="doi:10.1080/01621459.2019.1604367" class="uri">doi:10.1080/01621459.2019.1604367</a>.</p>
+</section>
+<section id="depends" class="level4">
+<h4 class="anchored" data-anchor-id="depends">Depends</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">package</th>
+<th style="text-align: left;">version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Depends</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">&gt;= 4.1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Depends</td>
+<td style="text-align: left;">pomp</td>
+<td style="text-align: left;">&gt;= 4.5.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Imports</td>
+<td style="text-align: left;">methods</td>
+<td style="text-align: left;">*</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="license" class="level4">
+<h4 class="anchored" data-anchor-id="license">License</h4>
+<p>GPL-3</p>
 
 
 </section>
