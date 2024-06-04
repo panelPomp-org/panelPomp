@@ -39,8 +39,11 @@ simulate,panelPomp-method	simulate
 toMatrixPparams	params
 toVectorPparams	params
 traces,mif2d.ppomp-method	mif2
-unitlogLik	unitlogLik
-unitlogLik,pfilterd.ppomp-method	pfilter
+unitLogLik	unitlogLik
+unitlogLik	unitlogLik-deprecated
+unitLogLik,pfilterd.ppomp-method	pfilter
+unitlogLik,pfilterd.ppomp-method	unitlogLik-pfilterd.ppomp-method
+unitlogLik-deprecated	unitlogLik-deprecated
 unitobjects	unitobjects
 unitobjects,panelPomp-method	panelPomp_methods
 window,panelPomp-method	panelPomp_methods
