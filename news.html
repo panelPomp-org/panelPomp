@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Manual</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news.html"> 
+    <a class="nav-link active" href="./news.html" aria-current="page"> 
 <span class="menu-text">NEWS</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -155,55 +155,384 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">panelPomp</h1>
-<p class="subtitle lead">R package for statistical inference using panel POMPs (Partially Observed Markov Processes)</p>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+
+
+<div class="container">
+<main>
+<h2 class="anchored">
+News for package ‘panelPomp’
+</h2>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 1.2.0
+</h3>
+<ul>
+<li>
+<p>
+Change the generic <code>unitlogLik</code> to <code>unitLogLik</code> to match camel-case style of package. The original function is deprecated in this version and will be removed in future updates.
+</p>
+</li>
+<li>
+<p>
+Changed <code>panelPomp</code> S4 object slot name from <code>unit.objects</code> to <code>unit_objects</code> in order to be consistent with <code>pomp</code> pacakge. Corresponding getter and setter methods for this slot have also been changed from <code>unitobjects()</code> to <code>unit_objects()</code>.
+</p>
+</li>
+<li>
+<p>
+Added generics <code>shared()</code>, <code>shared()&lt;-</code>, <code>specific()</code>, and <code>specific()&lt;-</code>. These generics provide convinient access to parameters of a <code>panelPomp</code> object, but the setter methods also allow for changing a parameter type between shared and unit-specific.
+</p>
+</li>
+<li>
+<p>
+Minor typo fixes to package and function documentation.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 1.1.0.2
+</h3>
+<ul>
+<li>
+<p>
+Added a type check for the <code>params</code> arguement of the <code>pfilter</code> function in order to throw more user friendly error.
+</p>
+</li>
+<li>
+<p>
+A more user friendly error is thrown when the user specifies a parameter as both shared and unit specific in the <code>mif2</code> function.
+</p>
+</li>
+<li>
+<p>
+Added a <code>match.arg</code> call in <code>mif2.internal</code>; this will allow the default option for the <code>cooling.type</code> argument in <code>mif2</code> to no longer throw an error, and mimics the behaviour of the <code>mif2</code> function in the <code>pomp</code> package.
+</p>
+</li>
+<li>
+<p>
+The <code>pParams</code> function no longer changes the order of the unit specific parameter names; this was causing an error because the <code>barycentric</code> parameter transformation requires that the parameters are adjacent to one another in the parameter vector.
+</p>
+</li>
+<li>
+<p>
+Improved documentation for <code>panel_logmeanexp</code>.
+</p>
+</li>
+<li>
+<p>
+More robust input checking for the <code>pfilter</code> function with user friendly error messages.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 1.1.0
+</h3>
+<ul>
+<li>
+<p>
+Improved documentation and tests.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 1.0.0
+</h3>
+<ul>
+<li>
+<p>
+Submitted to CRAN.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.18.0
+</h3>
+<ul>
+<li>
+<p>
+Fixed bug in <code>fromVectorPparams()</code> to make it a true inverse of <code>toVectorPparams()</code>.
+</p>
+</li>
+<li>
+<p>
+Homogenized documentation; added examples.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.15.0
+</h3>
+<ul>
+<li>
+<p>
+New coercion to <code>pompList</code> and update to list.
+</p>
+</li>
+<li>
+<p>
+<code>panelGompertzLikelihood</code> replaces <code>kalman_gompertz.R</code>.
+</p>
+</li>
+<li>
+<p>
+expunged <code>panelPompExample</code>.
+</p>
+</li>
+<li>
+<p>
+Names added to plot; <code>pfilter</code> matches units by name.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.14.0
+</h3>
+<ul>
+<li>
+<p>
+New <code>simulate</code> function.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.13.0
+</h3>
+<ul>
+<li>
+<p>
+New <code>panelRandomWalk</code> example.
+</p>
+</li>
+<li>
+<p>
+<code>panelPompExample</code> is now deprecated and will be removed in the near future.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.12.0
+</h3>
+<ul>
+<li>
+<p>
+New <code>plot</code> method for <code>panelPomp</code> objects.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.11.0
+</h3>
+<ul>
+<li>
+<p>
+Additional functions implementing Kalman filtering to panels and to the Gompertz model.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.10.2.0
+</h3>
+<ul>
+<li>
+<p>
+Minor improvements to the interface.
+</p>
+</li>
+<li>
+<p>
+Additional examples: <span class="pkg">contacts()</span> and <span class="pkg">panelGompertz()</span>.
+</p>
+</li>
+<li>
+<p>
+The minimum version of <span class="pkg">pomp</span> supported is now <code>2.7</code>.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.9.1
+</h3>
+<ul>
+<li>
+<p>
+The minimum version of <span class="pkg">pomp</span> supported is now <code>2.1</code>. While this is likely to imply substantial changes in <span class="pkg">pomp</span> objects (on which <span class="pkg">panelPomp</span> objects rely) there are only three fundamental changes that break panelPomp’s backwards compatibility:
+</p>
+</li>
+<li>
+<p>
+The first argument <code>pfilter(object, …)</code> changes to <code>data</code>.
+</p>
+</li>
+<li>
+<p>
+The first argument <code>mif2(object, …)</code> changes to <code>data</code>.
+</p>
+</li>
+<li>
+<p>
+The ‘conv.rec’ method has been deprecated, replaced by the new ‘traces’ method.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.8.3
+</h3>
+<ul>
+<li>
+<p>
+Improvements to the interface.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.7
+</h3>
+<ul>
+<li>
+<p>
+A new <code>conv.rec</code> method.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.6
+</h3>
+<ul>
+<li>
+<p>
+Many improvements to the interface.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.5.6
+</h3>
+<ul>
+<li>
+<p>
+<code>panelPompExamples()</code> now allows creating <code>panelPomp</code> objects that come with the package.
+</p>
+</li>
+<li>
+<p>
+New documentation and tests.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.5.5
+</h3>
+<ul>
+<li>
+<p>
+New documentation and tests.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.5.4
+</h3>
+<ul>
+<li>
+<p>
+New documentation and tests.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.5.3
+</h3>
+<ul>
+<li>
+<p>
+New documentation and additional tests.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.5
+</h3>
+<ul>
+<li>
+<p>
+New documentation and additional tests and coverage.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.4
+</h3>
+<ul>
+<li>
+<p>
+New tests added.
+</p>
+</li>
+<li>
+<p>
+New methods.
+</p>
+</li>
+<li>
+<p>
+A bug in <code>pfilter</code> and <code>mif2</code> has been fixed (<code>pomp</code>’s default filtering tolerance <code>tol=1e-17</code> was used instead of values specified by the user). Thanks to Aaron King for finding it.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.2
+</h3>
+<ul>
+<li>
+<p>
+New tests added.
+</p>
+</li>
+<li>
+<p>
+Eliminate need to protect <code>rw.sd</code> from being evaluated.
+</p>
+</li>
+</ul>
+<h3 class="anchored">
+Changes in <span class="pkg">panelPomp</span> version 0.1
+</h3>
+<ul>
+<li>
+<p>
+Unused variable purged.
+</p>
+</li>
+<li>
+<p>
+<code>pPfilter.internal</code> streamlined.
+</p>
+</li>
+<li>
+<p>
+Test for reproducibility of pfilter calculations added.
+</p>
+</li>
+</ul>
+</main>
 </div>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="authors" class="level4">
-<h4 class="anchored" data-anchor-id="authors">Authors</h4>
-<p>Carles Bretó (carles.breto@uv.es), Edward L. Ionides, Aaron A. King and Jesse Wheeler (jeswheel@umich.edu)</p>
-</section>
-<section id="inference-for-panelpomps-panel-partially-observed-markov-processes" class="level4">
-<h4 class="anchored" data-anchor-id="inference-for-panelpomps-panel-partially-observed-markov-processes">Inference for PanelPOMPs (Panel Partially Observed Markov Processes)</h4>
-<p>The <code>panelPomp</code> package provides facilities for inference on panel data using panel partially-observed Markov process (PanelPOMP) models. To do so, it relies on and extends a number of facilities that the <a href="https://kingaa.github.io/pomp/"><code>pomp</code> package</a> provides for inference on time series data using partially-observed Markov process (POMP) models.</p>
-<p>The <code>panelPomp</code> package extends to panel data some of the capabilities of the <code>pomp</code> package to fit nonlinear, non-Gaussian dynamic models. This is done accommodating both fixed and random effects. Currently, the focus is on likelihood-based approaches. In addition to these likelihood-based tools, <code>panelPomp</code> also provides a framework under which alternative statistical methods for PanelPOMP models can be developed (very much like <code>pomp</code> provides a platform upon which statistical inference methods for POMP models can be implemented).</p>
-</section>
-<section id="data-analysis-using-panelpomp" class="level4">
-<h4 class="anchored" data-anchor-id="data-analysis-using-panelpomp">Data analysis using <code>panelPomp</code></h4>
-<p>The first step in using <code>panelPomp</code> is to encode one’s model(s) and data in objects of class <code>panelPomp</code>. One does this via a call to the <a href="html/panelPomp.html"><code>panelPomp::panelPomp</code></a> constructor function.</p>
-<p>The current <a href="./about.html"><code>panelPomp</code> version</a> provides algorithms for</p>
-<ul>
-<li>particle filtering of panel data (AKA sequential Monte Carlo or sequential importance sampling), as proposed in Bret, Ionides and King (2020). This reference provides the fundamental theoretical support for the averaging of Monte Carlo replicates of panel unit likelihoods as implemented in <code>panelPomp</code>; see the <a href="html/pfilter.html"><code>pfilter</code> function documentation</a>.</li>
-<li>the panel iterated filtering method of Bret, Ionides and King (2020). This reference provides the fundamental theoretical support for the extensions of the iterated filtering ideas of Ionides et al.&nbsp;(2006, 2011, 2015) to panel data as implemented in <code>panelPomp</code>; see the <a href="html/mif2.html"><code>mif2</code> function documentation</a>.</li>
-</ul>
-<p>The package also provides various tools for handling and extracting information on models and data.</p>
-</section>
-<section id="extending-the-platform-for-developing-inference-tools" class="level4">
-<h4 class="anchored" data-anchor-id="extending-the-platform-for-developing-inference-tools">Extending the platform for developing inference tools</h4>
-<p><code>panelPomp</code> extends to panel data the general interface to the components of POMP models provided by <code>pomp</code>. In doing so, it contributes to the goal of the <code>pomp</code> project of facilitating the development of new algorithms in an environment where they can be tested and compared on a growing body of models and datasets.</p>
-</section>
-<section id="comments-bug-reports-and-requests" class="level4">
-<h4 class="anchored" data-anchor-id="comments-bug-reports-and-requests">Comments, bug reports, and requests</h4>
-<p>Contributions are welcome, as are suggestions for improvement, feature requests, and bug reports. Please submit these via the <a href="https://github.com/cbreto/panelPomp/issues"><code>panelPomp</code> issues page</a>. We particularly welcome minimal working examples displaying uninformative, misleading or inacurate error messages. We also welcome suggestions for clarifying obscure passages in the documentation. Help requests are welcome, but please consider before sending requests whether they are regarding the use of <code>panelPomp</code> or that of <code>pomp</code>. For help with <code>pomp</code>, please visit <a href="https://kingaa.github.io/pomp/FAQ.html#how-can-i-submit-an-effective-request-for-help"><code>pomp</code>’s FAQ</a>.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
