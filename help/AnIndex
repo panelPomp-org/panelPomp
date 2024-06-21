@@ -16,6 +16,7 @@ mif2,mif2d.ppomp-method	mif2
 mif2,panelPomp-method	mif2
 mif2d.ppomp-class	mif2
 names,panelPomp-method	panelPomp_methods
+panel-designs	panel-designs
 panelGompertz	panelGompertz
 panelGompertzLikelihood	panelGompertzLikelihood
 panelPomp	panelPomp
@@ -34,6 +35,7 @@ pParams	panelPomp_methods
 pparams	pparams
 pparams,panelPomp-method	panelPomp_methods
 print,panelPomp-method	panelPomp_methods
+runif_panel_design	panel-designs
 shared	shared
 shared,panelPomp-method	panelPomp_methods
 shared<-	shared-set
