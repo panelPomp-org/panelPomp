@@ -2,30 +2,22 @@
 % Please edit documentation in R/params.R
 \name{params}
 \alias{params}
-\alias{toVectorPparams}
-\alias{fromVectorPparams}
+\alias{toParamVec}
 \alias{toMatrixPparams}
-\title{Convert to and from a \code{panelPomp} object \code{pParams} slot format and a one-row \code{data.frame}}
+\title{Manipulating \code{panelPomp} object parameter formats}
 \usage{
-toVectorPparams(pParams)
-
-fromVectorPparams(vec_pars)
+toParamVec(pParams)
 
 toMatrixPparams(listPparams)
 }
 \arguments{
-\item{pParams}{A list with the format of the \code{pParams} slot of \code{panelPomp} objects.}
-
-\item{vec_pars}{A one-row \code{data.frame} with format matching that of the
-output of \link{toVectorPparams}.}
+\item{pParams}{A list with both shared (vector) and unit-specific (matrix) parameters.}
 
 \item{listPparams}{PanelPomp parameters in list format}
 }
 \value{
-\code{toVectorPparams()} returns an object of class \code{data.frame}.
-
-\code{fromVectorPparams()} returns an object of class \code{list} with the
-model parameters in list form.
+\code{toParamVec()} returns model parameters in vector form. This function
+is the inverse of \link{toParamList}
 
 \code{toMatrixPparams()} returns an object of class \code{matrix} with the
 model parameters in matrix form.
@@ -35,9 +27,8 @@ These facilitate keeping a record of evaluated log likelihoods.
 }
 \examples{
 prw <- panelRandomWalk()
-toVectorPparams(pparams(prw))
-fromVectorPparams(toVectorPparams(pparams(prw)))
-toMatrixPparams(pparams(prw))
+toParamVec(coef(prw, format = 'list'))
+toMatrixPparams(coef(prw, format = 'list'))
 }
 \author{
 Carles \Breto

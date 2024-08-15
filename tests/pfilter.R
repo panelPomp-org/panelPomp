@@ -8,7 +8,7 @@ test <- function(expr1,expr2,all="TESTS_PASS",env=parent.frame(),...)
 ppo <- panelRandomWalk(U=1,N=7)
 pos <- as(ppo,"list")
 po <- pos[[1]]
-pPs <- pparams(ppo)
+pPs <- coef(ppo, format = 'list')
 
 ep <- wQuotes("Error : in ''pfilter'': ")
 
@@ -18,7 +18,7 @@ test(wQuotes(ep,"''data'' is a required argument.\n"),
   pfilter(params=coef(ppo),Np=10))
 test(wQuotes(ep,"names of ''shared'' must match those of ",
   "''object@shared''.\n"),
-  pfilter(panelPomp(unit_objects(ppo)),sh=pparams(ppo)$sh,Np=10))
+  pfilter(panelPomp(unit_objects(ppo)),sh=shared(ppo),Np=10))
 test(wQuotes(ep,"Missing ''Np'' argument.\n"),pfilter(ppo))
 
 # Testing error message if params argument is list without shared / specific elements
@@ -75,7 +75,7 @@ set.seed(21125715L)
 ppf_<-pfilter(ppo,params=list(shared=ppo@shared,specific=ppo@specific),Np=10)
 test(logLik(ppf),logLik(ppf_))
 numeric_names <- setNames(rep(1,3),c(names(ppo@shared),"X.0[rw1]"))
-test(pPs,pParams(numeric_names))
+test(pPs,toParamList(numeric_names))
 set.seed(21125715L)
 ppf__<-pfilter(ppo,params=numeric_names,Np=10)
 test(logLik(ppf),logLik(ppf__))
@@ -102,15 +102,15 @@ test(names(as(ppf,"data.frame")),c("t", "Y", "ess", "cond.logLik", "unit"))
   g <- panelGompertz(U=10,N=3)
   ## check that previously broken code runs without error
   g0 <- pfilter(g, Np=10,
-    shared=pParams(coef(g))$shared,
-    specific=pParams(coef(g))$specific)
+    shared=shared(g),
+    specific=specific(g))
   ## a longer stronger test
   long_test <- FALSE
   if(long_test){
     set.seed(12323218)
     g1 <- pfilter(g, Np=10000,
-      shared=pParams(coef(g))$shared,
-      specific=pParams(coef(g))$specific)
+      shared=shared(g),
+      specific=specific(g))
     g2 <- pfilter(g, Np=10000)
     test(abs(logLik(p1)-logLik(p2))<0.2, TRUE)
   }

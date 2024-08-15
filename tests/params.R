@@ -11,20 +11,27 @@ u <- 5 # at least 1
 sp <- matrix(
   as.numeric(paste0(rep(seq(3,u+2),each=2),rep(c(".1",".2"),times=u))),
   nrow=2,
-  dimnames=list(c("spec.1","spec.2"),c(paste0("unit.",1:u)))
+  dimnames=list(param = c("spec.1","spec.2"),unit = c(paste0("unit.",1:u)))
+)
+
+out_null_sp <- toParamList(
+  toParamVec(
+    list(shared=sh,specific=array(
+      numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))
+    )
+  )
 )
 
 ## recovec pParams (shared parameters only)
-test(list(shared=sh,specific=array(
-  numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))),
-  fromVectorPparams(toVectorPparams(list(shared=sh,specific=array(
-    numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))))))
+test(all(dim(out_null_sp$specific) == c(0, 0)))
+test(out_null_sp$shared, sh)
+
 ## recovec pParams (specific parameters only)
 test(list(shared=numeric(0),specific=sp),
-  fromVectorPparams(toVectorPparams(list(shared=numeric(0),specific=sp))))
+  toParamList(toParamVec(list(shared=numeric(0),specific=sp))))
 ## recovec pParams (both)
 test(list(shared=sh,specific=sp),
-     fromVectorPparams(toVectorPparams(list(shared=sh,specific=sp))))
+     toParamList(toParamVec(list(shared=sh,specific=sp))))
 
 ## tolspPs and toMatrixPparams work (shared parameters only)
 list(shared=sh,specific=array(numeric(0),dim=c(0,ncol(sp)),
@@ -57,6 +64,8 @@ res <- panelPomp:::toListPparams(
   vector.name.in.listPparams=vector.name.in.listPparams,
   matrix.name.in.listPparams=matrix.name.in.listPparams
 )
+dimnames(res$specific) <- list(param=rownames(res$specific), unit=colnames(res$specific))
+
 test(res,listPparams)
 
 ## tolistPparams and toMatrixPparams work (both)
@@ -75,6 +84,21 @@ res <- panelPomp:::toListPparams(
   vector.name.in.listPparams=vector.name.in.listPparams,
   matrix.name.in.listPparams=matrix.name.in.listPparams
 )
+dimnames(res$specific) <- list(param=rownames(res$specific), unit=colnames(res$specific))
+
+
+ep <- "Error : in ''toParamVec'': "
+## test checks for missing arguments in panelPomp function
+test(
+  wQuotes(ep,"input must be a list.\n"),
+  toParamVec(c(1, 2, 3))
+)
+
+test(
+  wQuotes(ep, 'input must have shared or specific components.\n'),
+  toParamVec(list(a=c(1, 2, 3)))
+)
+
 test(res,listPparams)
 
 ## check whether all tests passed

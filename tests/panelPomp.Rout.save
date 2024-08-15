@@ -1,7 +1,7 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
 Copyright (C) 2024 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu
+Platform: x86_64-apple-darwin20
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -27,7 +27,7 @@ Type 'q()' to quit R.
 > pg <- panelGompertz(U=5,N=3)
 > pg <- panelPomp(pg[1:3])
 > pgl <- as(pg,"list")
-> g <- pgl[[1]]; coef(g) <- c(pparams(pg)$sh, pparams(pg)$sp[,1])
+> g <- pgl[[1]]; coef(g) <- c(shared(pg), specific(pg)[,1])
 > coef(g)
     r sigma     K   tau   X.0 
   0.1   0.1   1.0   0.1   1.0 
@@ -94,7 +94,7 @@ Error : in ‘panelPomp’: ‘object’ must be either a ‘panelPomp’ object
 > 
 > ppo <- panelRandomWalk(U=2,N=5)
 > pos <- as(ppo,"list")
-> pPs <- pparams(ppo)
+> pPs <- coef(ppo, format = 'list')
 > all_sh <- c(pPs$sh,get_col(pPs$sp,col=1,rows=seq_along(dim(pPs$sp)[1])))
 > 
 > noparams <- lapply(unit_objects(ppo),pomp,params=numeric(0))

@@ -179,7 +179,7 @@ panelPomp <- function (object, shared, specific, params) {
         call.=FALSE)
     } else {
       if (is.numeric(params) && !is.null(names(params))) {
-        params <- pParams(params)
+        params <- toParamList(params)
       } else {
         stop(wQuotes(ep,"''params'' must be a named numeric vector"),call.=FALSE)
       }
