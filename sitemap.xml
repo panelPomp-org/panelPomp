@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jeswheel.github.io/panelPomp/todo.html</loc>
-    <lastmod>2024-06-24T14:12:41.092Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/bibliography.html</loc>
-    <lastmod>2024-06-24T14:12:41.092Z</lastmod>
-  </url>
-  <url>
     <loc>https://jeswheel.github.io/panelPomp/index.html</loc>
-    <lastmod>2024-06-24T14:12:41.092Z</lastmod>
+    <lastmod>2024-08-16T13:20:39.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/todo.html</loc>
+    <lastmod>2024-08-16T13:20:39.252Z</lastmod>
   </url>
   <url>
     <loc>https://jeswheel.github.io/panelPomp/news.html</loc>
-    <lastmod>2024-06-24T14:12:41.092Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/vignettes/getting-started.html</loc>
-    <lastmod>2024-06-24T14:14:33.900Z</lastmod>
+    <lastmod>2024-08-16T13:20:39.252Z</lastmod>
   </url>
   <url>
     <loc>https://jeswheel.github.io/panelPomp/about.html</loc>
-    <lastmod>2024-06-24T14:12:41.092Z</lastmod>
+    <lastmod>2024-08-16T13:20:39.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/bibliography.html</loc>
+    <lastmod>2024-08-16T13:20:39.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/vignettes/getting-started.html</loc>
+    <lastmod>2024-08-16T13:27:14.074Z</lastmod>
   </url>
 </urlset>
