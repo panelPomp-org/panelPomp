@@ -910,7 +910,7 @@ The \panelPomp package offers opportunities to remedy this situation.
 
 The source code for \panelPomp is at \url{https://github.com/cbreto/panelPomp}.
 Unit tests that cover 100\% of the code are provided at \url{https://github.com/cbreto/panelPomp/tests}, and these tests also provide useful examples of calls to the functions within \panelPomp.
-The source code for this article is at \url{https://github.com/cbreto/panelPompPaper/}.
+The source code for this article is at \url{https://github.com/cbreto/panelPomp/vignettes/articles/package_tutorial}.
 
 \section*{Acknowledgments}
 The results in this paper were obtained using \R~\Sexpr{paste(R.Version()[6:7], collapse = ".")} with \pkg{panelPomp}~\Sexpr{packageVersion("panelPomp")} and pkg{pomp}~\Sexpr{packageVersion("pomp")}.
