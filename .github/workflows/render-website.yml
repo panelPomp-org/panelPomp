@@ -87,7 +87,10 @@ jobs:
 
       - name: Copy Vignettes and Other Files
         run: |
-          cp -r vignettes website/
+          mkdir -p website/vignettes
+          cp vignettes/getting-started.Rmd website/vignettes/.
+          cp vignettes/articles/package_tutorial/tutorial.pdf website/vignettes/.
+          # cp -r vignettes website/
           Rscript --vanilla website/rmd2qmd.R website/vignettes/getting-started
           rm website/vignettes/getting-started.Rmd
           tree website
