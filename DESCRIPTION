@@ -42,5 +42,5 @@ Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
     rmarkdown,
-    bookdown 
+    bookdown
 VignetteBuilder: knitr
