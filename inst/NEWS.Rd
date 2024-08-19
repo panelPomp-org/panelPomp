@@ -2,7 +2,7 @@
 \title{News for package `panelPomp'}
 \section{Changes in \pkg{panelPomp} version 1.3.0}{
   \itemize{
-    \item Changed the default \code{cooling.type} argument in the \code{mif2()} function to be \code{"generic"} in order to be consistent with the \code{pomp} package.
+    \item Changed the default \code{cooling.type} argument in the \code{mif2()} function to be \code{"geometric"} in order to be consistent with the \code{pomp} package.
     \item Added \code{format} argument to \code{coef.panelPomp} method, with options \code{c("vector", "list")}. This functionality makes the \code{pparams} function obsolete, so it has been removed from the package in this version.
     \item Changed the \code{pParams()} function name to \code{toParamList()}.
     \item Modified the \code{toVectorPparams()} function so that it returns a vector instead of a \code{data.frame} object with a single row. The name of the function was also changed to \code{toParamVec()}, and is a near inverse of the \code{toParamList()} function.
