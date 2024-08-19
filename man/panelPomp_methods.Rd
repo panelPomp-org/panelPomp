@@ -7,8 +7,7 @@
 \alias{coef<-,panelPomp-method}
 \alias{length,panelPomp-method}
 \alias{names,panelPomp-method}
-\alias{pparams,panelPomp-method}
-\alias{pParams}
+\alias{toParamList}
 \alias{print,panelPomp-method}
 \alias{show,panelPomp-method}
 \alias{unit_objects,panelPomp-method}
@@ -21,7 +20,7 @@
 \alias{shared<-,panelPomp-method}
 \title{Manipulating \code{panelPomp} objects}
 \usage{
-\S4method{coef}{panelPomp}(object)
+\S4method{coef}{panelPomp}(object, format = c("vector", "list"))
 
 \S4method{coef}{panelPomp}(object, ...) <- value
 
@@ -29,9 +28,7 @@
 
 \S4method{names}{panelPomp}(x)
 
-\S4method{pparams}{panelPomp}(object)
-
-pParams(value)
+toParamList(value)
 
 \S4method{print}{panelPomp}(x, ...)
 
@@ -57,6 +54,8 @@ pParams(value)
 \item{object, x}{An object of class \code{panelPomp} or inheriting class
 \code{panelPomp}.}
 
+\item{format}{the format (data type) of the return value.}
+
 \item{...}{....}
 
 \item{value}{value to be assigned.}
@@ -64,8 +63,6 @@ pParams(value)
 \item{start, end}{position in original \code{times(pomp)} at which to start.}
 
 \item{i}{unit index (indices) or name (names).}
-
-\item{format}{the format (data type) of the return value.}
 }
 \value{
 \code{coef()} returns a \code{numeric} vector.
@@ -74,9 +71,7 @@ pParams(value)
 
 \code{names()} returns a \code{character} vector.
 
-\pparamsReturn
-
-\code{pParams()} returns a \code{list} with the model parameters in list form.
+\code{toParamList()} returns a \code{list} with the model parameters in list form.
 
 \unitobjectsReturn
 
@@ -101,8 +96,7 @@ Tools for manipulating \code{panelPomp} objects.
 \item{coef<-}{Assign coefficients to \code{panelPomp} objects.}
 \item{length}{Count the number of units in \code{panelPomp} objects.}
 \item{names}{Get the unit names of \code{panelPomp} objects.}
-\item{pparams}{Extracts coefficients from \code{panelPomp} objects in list form.}
-\item{pParams}{Converts panel coefficients from vector form to list form.}
+\item{toParamList}{Converts panel coefficients from vector form to list form.}
 \item{window}{Subset \code{panelPomp} objects by changing start time and
 end time.}
 \item{\code{[]}}{Take a subset of units.}
@@ -119,10 +113,8 @@ coef(prw) <- c(sigmaX=2,coef(prw)[-1])
 coef(prw)
 length(prw)
 names(prw)
-# extract parameters in list form
-pparams(prw)
 # convert vector-form parameters to list-form parameters
-pParams(coef(prw))
+toParamList(coef(prw))
 ## summaries of objects
 print(prw)
 show(prw)

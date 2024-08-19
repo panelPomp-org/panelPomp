@@ -92,7 +92,7 @@ setMethod(
     object <- data # the argument name 'data' is fixed by pomp's generic
     ep <- wQuotes("in ''pfilter'': ")
     ## check for params format
-    if (!missing(params) && is.numeric(params)) params <- pParams(params)
+    if (!missing(params) && is.numeric(params)) params <- toParamList(params)
 
     if (!missing(shared) && !missing(specific) && !missing(params))
       stop(ep,wQuotes("specify either ''params'' only, ''params'' and ''shared'' ,",

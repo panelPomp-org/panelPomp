@@ -17,7 +17,7 @@
   start,
   Np,
   rw.sd,
-  cooling.type = c("hyperbolic", "geometric"),
+  cooling.type = c("geometric", "hyperbolic"),
   cooling.fraction.50,
   block = FALSE,
   verbose = getOption("verbose"),

@@ -1,5 +1,5 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin20
 
@@ -30,22 +30,30 @@ Type 'q()' to quit R.
 > sp <- matrix(
 +   as.numeric(paste0(rep(seq(3,u+2),each=2),rep(c(".1",".2"),times=u))),
 +   nrow=2,
-+   dimnames=list(c("spec.1","spec.2"),c(paste0("unit.",1:u)))
++   dimnames=list(param = c("spec.1","spec.2"),unit = c(paste0("unit.",1:u)))
++ )
+> 
+> out_null_sp <- toParamList(
++   toParamVec(
++     list(shared=sh,specific=array(
++       numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))
++     )
++   )
 + )
 > 
 > ## recovec pParams (shared parameters only)
-> test(list(shared=sh,specific=array(
-+   numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))),
-+   fromVectorPparams(toVectorPparams(list(shared=sh,specific=array(
-+     numeric(0),dim=c(0,ncol(sp)),dimnames=list(NULL,colnames(sp)))))))
+> test(all(dim(out_null_sp$specific) == c(0, 0)))
 [1] TRUE
+> test(out_null_sp$shared, sh)
+[1] TRUE
+> 
 > ## recovec pParams (specific parameters only)
 > test(list(shared=numeric(0),specific=sp),
-+   fromVectorPparams(toVectorPparams(list(shared=numeric(0),specific=sp))))
++   toParamList(toParamVec(list(shared=numeric(0),specific=sp))))
 [1] TRUE
 > ## recovec pParams (both)
 > test(list(shared=sh,specific=sp),
-+      fromVectorPparams(toVectorPparams(list(shared=sh,specific=sp))))
++      toParamList(toParamVec(list(shared=sh,specific=sp))))
 [1] TRUE
 > 
 > ## tolspPs and toMatrixPparams work (shared parameters only)
@@ -80,6 +88,8 @@ Type 'q()' to quit R.
 +   vector.name.in.listPparams=vector.name.in.listPparams,
 +   matrix.name.in.listPparams=matrix.name.in.listPparams
 + )
+> dimnames(res$specific) <- list(param=rownames(res$specific), unit=colnames(res$specific))
+> 
 > test(res,listPparams)
 [1] TRUE
 > 
@@ -99,6 +109,23 @@ Type 'q()' to quit R.
 +   vector.name.in.listPparams=vector.name.in.listPparams,
 +   matrix.name.in.listPparams=matrix.name.in.listPparams
 + )
+> dimnames(res$specific) <- list(param=rownames(res$specific), unit=colnames(res$specific))
+> 
+> 
+> ep <- "Error : in ''toParamVec'': "
+> ## test checks for missing arguments in panelPomp function
+> test(
++   wQuotes(ep,"input must be a list.\n"),
++   toParamVec(c(1, 2, 3))
++ )
+[1] TRUE
+> 
+> test(
++   wQuotes(ep, 'input must have shared or specific components.\n'),
++   toParamVec(list(a=c(1, 2, 3)))
++ )
+[1] TRUE
+> 
 > test(res,listPparams)
 [1] TRUE
 > 

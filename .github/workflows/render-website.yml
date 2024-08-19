@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/render-website.yml'
       - 'DESCRIPTION'
+      - 'inst/NEWS'
+      - 'inst/NEWS.Rd'
       - 'R/**'
       - 'vignettes/**'
       - 'website/**'  # Make sure to include the path to your website files
@@ -87,7 +89,10 @@ jobs:
 
       - name: Copy Vignettes and Other Files
         run: |
-          cp -r vignettes website/
+          mkdir -p website/vignettes
+          cp vignettes/getting-started.Rmd website/vignettes/.
+          cp vignettes/articles/package_tutorial/tutorial.pdf website/vignettes/.
+          # cp -r vignettes website/
           Rscript --vanilla website/rmd2qmd.R website/vignettes/getting-started
           rm website/vignettes/getting-started.Rmd
           tree website

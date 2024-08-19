@@ -20,8 +20,7 @@ NULL
 #'   \item{coef<-}{Assign coefficients to \code{panelPomp} objects.}
 #'   \item{length}{Count the number of units in \code{panelPomp} objects.}
 #'   \item{names}{Get the unit names of \code{panelPomp} objects.}
-#'   \item{pparams}{Extracts coefficients from \code{panelPomp} objects in list form.}
-#'   \item{pParams}{Converts panel coefficients from vector form to list form.}
+#'   \item{toParamList}{Converts panel coefficients from vector form to list form.}
 #'   \item{window}{Subset \code{panelPomp} objects by changing start time and
 #'   end time.}
 #'   \item{\code{[]}}{Take a subset of units.}
@@ -42,15 +41,21 @@ NULL
 setMethod(
   "coef",
   signature=signature(object="panelPomp"),
-  definition = function (object) {
+  definition = function (object, format = c("vector", 'list')) {
+    out_type <- match.arg(format)
     pmat <- object@specific
-    c(
-      object@shared,
-      setNames(
-        as.numeric(pmat),
-        outer(rownames(pmat),colnames(pmat),sprintf,fmt="%s[%s]")
+
+    if (out_type == 'vector') {
+      c(
+        object@shared,
+        setNames(
+          as.numeric(pmat),
+          outer(rownames(pmat),colnames(pmat),sprintf,fmt="%s[%s]")
+        )
       )
-    )
+    } else if (out_type == 'list') {
+      list(shared=object@shared,specific=object@specific)
+    }
   }
 )
 
@@ -115,27 +120,16 @@ setMethod(
 )
 
 #' @rdname panelPomp_methods
-#' @return \pparamsReturn
-# \pparamsReturn is resused in documentation of generic function introduced by the panelPomp package
-#' @example examples/pparams.R
-#' @export
-setMethod(
-  "pparams",
-  signature=signature(object="panelPomp"),
-  definition = function (object)
-    list(shared=object@shared,specific=object@specific)
-)
-
-#' @rdname panelPomp_methods
 #' @return
-#' \code{pParams()} returns a \code{list} with the model parameters in list form.
+#' \code{toParamList()} returns a \code{list} with the model parameters in list form.
 #' @examples
 #' # convert vector-form parameters to list-form parameters
-#' pParams(coef(prw))
+#' toParamList(coef(prw))
 #' @export
-pParams <- function (value) {
+toParamList <- function (value) {
 
-  ep <- wQuotes("in ''pParams'': ")
+  ep <- wQuotes("in ''toParamList'': ")
+  if (is.list(value)) stop(ep, 'input is already a list.', call. = FALSE)
   if (!is.vector(value)) stop(ep, "input must be a vector.", call. = FALSE)
 
   nn <- grep("^.+\\[.+?\\]$", names(value), perl = TRUE, value = TRUE)
@@ -183,7 +177,7 @@ setMethod(
     cat("panel of",length(object),ifelse(length(object)>1,"units","unit"),"\n")
     if (length(coef(object))>0) {
       cat("parameter(s):\n")
-      print(pParams(coef(object)))
+      print(coef(object, format = 'list'))
     } else {
       cat("parameter(s) unspecified\n");
     }

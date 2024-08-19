@@ -33,6 +33,8 @@ website:
         menu:
           - href: vignettes/getting-started.qmd
             text: "Getting Started"
+          - href: vignettes/tutorial.pdf
+            text: "Package Tutorial"
 
 format:
   html:

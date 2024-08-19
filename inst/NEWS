@@ -1,5 +1,25 @@
 _N_e_w_s _f_o_r _p_a_c_k_a_g_e '_p_a_n_e_l_P_o_m_p'
 
+_C_h_a_n_g_e_s _i_n '_p_a_n_e_l_P_o_m_p' _v_e_r_s_i_o_n _1._3._0:
+
+        • Changed the default ‘cooling.type’ argument in the ‘mif2()’
+          function to be ‘"geometric"’ in order to be consistent with
+          the ‘pomp’ package.
+
+        • Added ‘format’ argument to ‘coef.panelPomp’ method, with
+          options ‘c("vector", "list")’. This functionality makes the
+          ‘pparams’ function obsolete, so it has been removed from the
+          package in this version.
+
+        • Changed the ‘pParams()’ function name to ‘toParamList()’.
+
+        • Modified the ‘toVectorPparams()’ function so that it returns
+          a vector instead of a ‘data.frame’ object with a single row.
+          The name of the function was also changed to ‘toParamVec()’,
+          and is a near inverse of the ‘toParamList()’ function.
+
+        • Updated unit tests and documentation.
+
 _C_h_a_n_g_e_s _i_n '_p_a_n_e_l_P_o_m_p' _v_e_r_s_i_o_n _1._2._0:
 
         • Change the generic ‘unitlogLik’ to ‘unitLogLik’ to match

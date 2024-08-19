@@ -1,7 +1,7 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
 Copyright (C) 2024 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu
+Platform: x86_64-apple-darwin20
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -27,7 +27,7 @@ Type 'q()' to quit R.
 > ppo <- panelRandomWalk(U=1,N=7)
 > pos <- as(ppo,"list")
 > po <- pos[[1]]
-> pPs <- pparams(ppo)
+> pPs <- coef(ppo, format = 'list')
 > 
 > ep <- wQuotes("Error : in ''pfilter'': ")
 > 
@@ -39,7 +39,7 @@ Type 'q()' to quit R.
 [1] TRUE
 > test(wQuotes(ep,"names of ''shared'' must match those of ",
 +   "''object@shared''.\n"),
-+   pfilter(panelPomp(unit_objects(ppo)),sh=pparams(ppo)$sh,Np=10))
++   pfilter(panelPomp(unit_objects(ppo)),sh=shared(ppo),Np=10))
 [1] TRUE
 > test(wQuotes(ep,"Missing ''Np'' argument.\n"),pfilter(ppo))
 [1] TRUE
@@ -110,7 +110,7 @@ Type 'q()' to quit R.
 > test(logLik(ppf),logLik(ppf_))
 [1] TRUE
 > numeric_names <- setNames(rep(1,3),c(names(ppo@shared),"X.0[rw1]"))
-> test(pPs,pParams(numeric_names))
+> test(pPs,toParamList(numeric_names))
 [1] TRUE
 > set.seed(21125715L)
 > ppf__<-pfilter(ppo,params=numeric_names,Np=10)
@@ -144,15 +144,15 @@ Type 'q()' to quit R.
 >   g <- panelGompertz(U=10,N=3)
 >   ## check that previously broken code runs without error
 >   g0 <- pfilter(g, Np=10,
-+     shared=pParams(coef(g))$shared,
-+     specific=pParams(coef(g))$specific)
++     shared=shared(g),
++     specific=specific(g))
 >   ## a longer stronger test
 >   long_test <- FALSE
 >   if(long_test){
 +     set.seed(12323218)
 +     g1 <- pfilter(g, Np=10000,
-+       shared=pParams(coef(g))$shared,
-+       specific=pParams(coef(g))$specific)
++       shared=shared(g),
++       specific=specific(g))
 +     g2 <- pfilter(g, Np=10000)
 +     test(abs(logLik(p1)-logLik(p2))<0.2, TRUE)
 +   }

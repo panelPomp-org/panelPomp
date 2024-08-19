@@ -45,3 +45,4 @@ hub_cov\.R
 covr.html
 covr.rds
 website
+^vignettes/articles$

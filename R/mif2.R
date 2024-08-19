@@ -206,7 +206,7 @@ mif2.internal <- function (object, Nmif, start, Np, rw.sd, cooling.type,
   # Extract loglikelihoods
   unit.logliks <- sapply(X = output, FUN = logLik)
   ploglik <- sum(unit.logliks)
-  # create pParams slot from last mif iteration values in pconv.rec
+  # create parameter list from last mif iteration values in pconv.rec
   pParams <- list()
   pParams$shared <- pconv.rec[nrow(pconv.rec), -1L]
   # Here, we want to drop the iteration dimension but, if there was only one
@@ -262,7 +262,7 @@ setMethod(
   "mif2",
   signature=signature(data="panelPomp"),
   definition = function (data, Nmif = 1, shared.start, specific.start, start,
-                         Np, rw.sd, cooling.type = c("hyperbolic", "geometric"),
+                         Np, rw.sd, cooling.type = c("geometric", "hyperbolic"),
                          cooling.fraction.50, block = FALSE,
                          verbose = getOption("verbose"), ...) {
     object <- data
@@ -275,7 +275,7 @@ setMethod(
     if (missing(start)) {
       start <- list(shared=object@shared,specific=object@specific)
     } else {
-     if (is.numeric(start)) start <- pParams(start)
+     if (is.numeric(start)) start <- toParamList(start)
     }
     if (missing(shared.start)) shared.start <- start$shared
     if (missing(specific.start)) specific.start <- start$specific
@@ -332,7 +332,7 @@ setMethod(
    if (missing(start)) {
       start <- list(shared=object@shared,specific=object@specific)
     } else {
-      if (is.numeric(start)) start <- pParams(start)
+      if (is.numeric(start)) start <- toParamList(start)
     }
     if (missing(shared.start)) shared.start <- start$shared
     if (missing(specific.start)) specific.start <- start$specific

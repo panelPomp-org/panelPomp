@@ -7,7 +7,7 @@ test <- function(expr1,expr2,all="TESTS_PASS",env=parent.frame(),...)
 
 pg <- panelGompertz(U=3,N=4)
 gompertz <- as(pg,"list")[[1]]
-coef(gompertz) <- c(pparams(pg)$sh, pparams(pg)$sp[,1])
+coef(gompertz) <- c(shared(pg), specific(pg)[,1])
 
 shgomp <- gompertz
 time(shgomp) <- time(gompertz)[1:2]

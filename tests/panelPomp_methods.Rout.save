@@ -1,7 +1,7 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
 Copyright (C) 2024 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu
+Platform: x86_64-apple-darwin20
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -33,7 +33,7 @@ Type 'q()' to quit R.
 > # other definitions from old test file
 > pg <- panelGompertz(U=3,N=5)
 > pgl <- as(pg,"list")
-> g <- pgl[[1]]; coef(g) <- c(pparams(pg)$sh, pparams(pg)$sp[,1])
+> g <- pgl[[1]]; coef(g) <- c(shared(pg), specific(pg)[,1])
 > pp <- panelPomp(list(g,g),shared=pg@shared,
 +                 specific=pg@specific[,1:2])
 > 
@@ -80,28 +80,35 @@ Type 'q()' to quit R.
 > ## test names,panelPomp-method
 > test(names(ppo),c("rw1","rw2"))
 [1] TRUE
-> ## test pparams,panelPomp-method
-> test(pparams(ppo),list(shared=ppo@shared,specific=ppo@specific))
+> ## test coef(..., format = 'list'),panelPomp-method
+> test(coef(ppo, format = 'list'),list(shared=ppo@shared,specific=ppo@specific))
 [1] TRUE
 > ## test pParams function
 > ## all sh
-> test(pParams(coef(ppo)[grep("^.+\\[.+?\\]$",names(coef(ppo)),perl=TRUE,
+> test(toParamList(coef(ppo)[grep("^.+\\[.+?\\]$",names(coef(ppo)),perl=TRUE,
 +                             value=TRUE,invert=TRUE)]),
 +      list(shared=ppo@shared,specific=array(numeric(0),dim=c(0,0))))
 [1] TRUE
 > ## all sp
 > test(list(shared=numeric(0),specific=ppo@specific),
-+      pParams(coef(ppo)[grep("^.+\\[.+?\\]$",names(coef(ppo)),perl=TRUE,
++      toParamList(coef(ppo)[grep("^.+\\[.+?\\]$",names(coef(ppo)),perl=TRUE,
 +                             value=TRUE)]))
 [1] TRUE
 > ## both sh & sp
-> test(pParams(coef(ppo)),list(shared=ppo@shared,specific=ppo@specific))
+> test(toParamList(coef(ppo)),list(shared=ppo@shared,specific=ppo@specific))
 [1] TRUE
 > 
-> # Test error message if pParams used on data.frame
+> # Test error message if toParamList used on data.frame / list
 > test(
-+   wQuotes("Error : in ''pParams'': ", "input must be a vector.\n"),
-+   pParams(data.frame('par1' = 1, 'par2' = 2))
++   wQuotes("Error : in ''toParamList'': ", "input is already a list.\n"),
++   toParamList(data.frame('par1' = 1, 'par2' = 2))
++ )
+[1] TRUE
+> 
+> # Test error message if toParamList used on matrix
+> test(
++   wQuotes("Error : in ''toParamList'': ", "input must be a vector.\n"),
++   toParamList(matrix(c(1, 2, 3)))
 + )
 [1] TRUE
 > 
