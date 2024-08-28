@@ -5,6 +5,7 @@ tests/(.+?)\.png$
 tests/(.+?)\.pdf$
 tests/(.+?)\.Rout$
 man/roxygen
+Governance\.md$
 LICENSE\.md$
 README\.md$
 CRAN\.md$
