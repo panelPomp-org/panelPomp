@@ -36,6 +36,7 @@ website/help
 inst/doc
 website/vignettes/*
 vignettes/articles/package_tutorial/tutorial.aux
+vignettes/articles/package_tutorial/tutorial.blg
 vignettes/articles/package_tutorial/tutorial.bbl
 vignettes/articles/package_tutorial/tutorial-concordance.tex
 vignettes/articles/package_tutorial/tutorial.log
