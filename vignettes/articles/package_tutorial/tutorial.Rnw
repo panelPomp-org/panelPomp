@@ -916,7 +916,7 @@ The source code for this article is at \url{https://github.com/cbreto/panelPomp/
 
 \section*{Acknowledgments}
 The results in this paper were obtained using \R~\Sexpr{paste(R.Version()[6:7], collapse = ".")} with \pkg{panelPomp}~\Sexpr{packageVersion("panelPomp")} and pkg{pomp}~\Sexpr{packageVersion("pomp")}.
-This work was supported by National Science Foundation grants DMS-1761603 and DMS-1646108, and National Institutes of Health grants 1-U54-GM111274 and 1-U01-GM110712.
+This work was supported by National Science Foundation grants DMS-1761603 and DMS-1646108, National Institutes of Health grants 1-U54-GM111274 and 1-U01-GM110712, and by MCIN/AEI/10.13039/501100011033 grants PID2020-116242RB-I00 and PID2023-152348NB-I00
 
 \bibliographystyle{jasa3}
 

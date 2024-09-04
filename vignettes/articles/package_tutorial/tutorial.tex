@@ -194,7 +194,7 @@
 \bigskip
 \begin{abstract}
 \noindent The \R package \panelPomp package supports analysis of panel data via a general class of partially observed Markov process models (PanelPOMP).
-We present a tutorial for this package, describing how the mathematical concept of a PanelPOMP is represented in the software, as well as a demonstration of typical use-cases of \panelPomp.
+This package tutorial describes how the mathematical concept of a PanelPOMP is represented in the software and demonstrates typical use-cases of \panelPomp.
 Monte Carlo methods used for POMP models require adaptation for PanelPOMP models due to the higher dimensionality of panel data.
 The package takes advantage of recent advances for PanelPOMP, including an iterated filtering algorithm, Monte Carlo adjusted profile methodology and block optimization methodology to assist with the large parameter spaces that can arise with panel models.
 In addition, tools for manipulation of models and data are provided that take advantage of the panel structure.
@@ -226,7 +226,8 @@ For instance, each time series in the panel may be too short to infer a complex 
 \panelPomp is, to our knowledge, the first software package specifically addressing these issues.
 The utility of \panelPomp has been demonstrated in several scientific applications \citep{ranjeva17,ranjeva19,wale19,domeyer22,lee20}.
 
-The current version of \panelPomp emphasizes plug-and-play methods \citep{breto09,he10}, also known as likelihood-free \citep{marjoram03,sisson07}, that are applicable to dynamic models for which a simulator is available even when the transition densities are unavailable.
+The current version of \panelPomp emphasizes simulation-based methods, also known as plug-and-play methods \citep{breto09,he10}, or likelihood-free methods \citep{marjoram03,sisson07}.
+Such methods are applicable to dynamic models for which a simulator is available even when the transition densities are unavailable.
 This class of flexible algorithms allow researchers to build their models based on scientific reasoning rather than statistical convenience, typically at the expense of computational efficiency.
 In the following sections, this tutorial demonstrates how the \panelPomp package can be used to model nonlinear dynamic systems using plug-and-play methodologies.
 
@@ -261,21 +262,21 @@ Suppose the parameter vector can be written as
 $\theta=(\shared,\specific_1,\dots,\specific_\Unit)$,
 where
 \begin{eqnarray}
-\label{eq:b1}
+\label{eq:b1a}
 f_{X_{\unit,\time}\vert X_{\unit,\time-1}}(x_{\unit,\time}\given x_{\unit,\time-1} \giventh \theta)
 &=&
 f_{X_{\unit,\time}|X_{\unit,\time-1}}(x_{\unit,\time}\given x_{\unit,\time-1} \giventh \shared,\specific_\unit)
 \\
-\label{eq:b1}
+\label{eq:b1b}
 f_{Y_{\unit,\time}|X_{\unit,\time}}(y_{\unit,\time}\given x_{\unit,\time} \giventh \theta) &=& f_{Y_{\unit,\time}|X_{\unit,\time}}(y_{\unit,\time}\given x_{\unit,\time} \giventh \shared,\specific_\unit)
 \\
-\label{eq:b1}
+\label{eq:b1c}
 f_{X_{\unit,0}}(x_{\unit,0} \giventh \theta) &=& f_{X_{\unit,0}}(x_{\unit,0} \giventh \shared,\specific_\unit)
 \end{eqnarray}
 Then, $\specific_{\unit}$ is a vector of \emph{unit-specific} parameters for unit $\unit$, and $\shared$ is a \emph{shared} parameter vector.
 We suppose $\shared\in\RealSpace^{\Nshared}$ and $\specific\in\RealSpace^{\Nspecific}$, so the dimension of the parameter vector $\theta$ is $\Thetadim=\Nshared+\Nspecific\Unit$.
 The collection of unit-specific parameters can be considered as a $\Nspecific\times\Unit$ matrix $[\specific_{\nspecific,\unit}]$.
-Determining which parameters should be modeled as unit-specific and which should be shared presents an intriguing scientific and statistical question on its own.
+Determining which parameters should be modeled as unit-specific and which should be shared is often itself an interesting scientific and statistical question.
 
 \begin{table}[t!]
   \begin{center}
@@ -300,7 +301,7 @@ Determining which parameters should be modeled as unit-specific and which should
 The \code{panelPomp} class follows the mathematical structure described above, consisting of a list of \code{pomp} objects together with a specification of shared and unit-specific parameters.
 The \code{pomp} objects can be built using the \code{pomp()} constructor function from the \pomp \R package \citep{king16}.
 These objects are bound into a \code{panelPomp} object by the constructor function \code{panelPomp()}.
-Our general framework does not insist that units of a PanelPOMP share observation times or other model features---though any additional shared structure may simplify the specification of the list of constituent \code{pomp} objects.
+The general framework does not insist that units of a PanelPOMP share observation times or other model features---though any additional shared structure may simplify the specification of the list of constituent \code{pomp} objects.
 The specification of \code{pomp} models was discussed by \citet{king16}, and open-source examples are available online for diverse applications including those described in Section~\ref{sec:examples}.
 Briefly, the model is specified by writing code to evaluate some or all of the following basic model components described in Table~\ref{tab:notation}.
 
@@ -480,7 +481,8 @@ The remaining examples give some applications in other domains which have been c
 
 \begin{enumerate}
 \example{Sexual contacts: behavioral heterogeneity within and between individuals}.
-\citet{romero-severson15} developed a PanelPOMP model to investigate a longitudinal prospective survey of sexual contacts, quantifying the roles of behavioral differences between individuals and differences within an individual over time. The \code{contacts()} function in \panelPomp generates one of the models and datasets studied in this paper. The source code to generate this \code{panelPomp} object is at \url{https://github.com/cbreto/panelPomp}.
+\citet{romero-severson15} developed a PanelPOMP model to investigate a longitudinal prospective survey of sexual contacts, quantifying the roles of behavioral differences between individuals and differences within an individual over time. The \code{contacts()} function in \panelPomp generates one of the models and datasets studied in this paper.
+The source code to generate this \code{panelPomp} object is at \url{https://github.com/cbreto/panelPomp}.
 
 
 \example{Recurrent infection with HPV}.
@@ -548,7 +550,7 @@ The Gompertz model is a convenient for testing methodology for nonlinear non-Gau
 
 
 
-This took 0.05 minutes using 12 cores, resulting in a list of objects of class \code{pfilterd.ppomp}.
+This took 0.05 minutes using 4 cores, resulting in a list of objects of class \code{pfilterd.ppomp}.
 We can use \code{logLik} to extract the Monte Carlo likelihood esimate $\loglik^{[\nrep]}$ for each replicate $\nrep$, and \code{unitlogLik}  to extract the vector of component Monte Carlo likelihood esimates $\loglik^{[\nrep]}_{\unit}$ for each unit $\unit=1,\dots,\Unit$, where $\loglik^{[\nrep]}=\sum_{\unit=1}^{\Unit}\loglik^{[\nrep]}_{\unit}$.
 For a POMP model, replicated particle filter likelihood evaluations are usually averaged on the natural scale, rather than the log scale, to take advantage of the unbiasedness of the particle filter likelihood estimate.
 Thus, we have
@@ -750,7 +752,7 @@ We then carry out a search from each starting point:
 
 
 
-This took 14.99 minutes using 12 cores, producing a list of objects of class \code{mifd.ppomp}.
+This took 15.0 minutes using 4 cores, producing a list of objects of class \code{mifd.ppomp}.
 The algorithmic parameters are very similar to those of the \code{mif2} method for class \code{pomp}.
 The perturbations, determined by the \code{rw\_sd} argument, may be a list giving separate instructions for each unit.
 When only one specification for a unit-specific parameter is given (as we do for $K_\unit$ here) the same perturbation is used for all units.
@@ -795,7 +797,7 @@ Now we apply this block maximization to find updated unit-specific parameters fo
 
 
 
-This took 0.76 minutes.
+This took 0.8 minutes.
 
 We expect Monte Carlo estimates of the maximized log likelihood functions to fall below the actual (usually unknown) value.
 This is in part because imperfect maximization can only reduce the maximized likelihood, and in part a consequence of Jensen's inequality applied to the likelihood evaluation: the unbiased SMC likelihood evaluation has a negative bias on estimation of the log likelihood.
@@ -851,7 +853,7 @@ The following code combines the joint and block maximizations developed above.
 
 
 
-The profile searches took 68.21 minutes.
+The profile searches took 68.2 minutes.
 However, we are not quite done gathering the results for the profile.
 The perturbed filtering carried out by \code{mif2} leads to an approximate likelihood evaluation, but for our main results it is better to re-evaluate the likelihood without perturbations.
 Also, replication is recommended to reduce and quantify Monte Carlo error.
@@ -875,7 +877,7 @@ We do this, and tabulate the results.
 
 
 
-The likelihood evaluations took 3.17 minutes.
+The likelihood evaluations took 3.2 minutes.
 It is appropriate to spend comparable time evaluating the likelihood to the time spent maximizing it: a high quality maximization without high quality likelihood evaluation is hard to interpret, whereas good evaluations of the likelihood in a vicinity of the maximum can inform about the shape of the likelihood surface in this region which may be as relevant as knowing the exact maximum.
 
 The Monte Carlo adjusted profile (MCAP) approach of \citet{ionides17} is implemented by the \code{mcap()} function in \pomp.
@@ -901,7 +903,7 @@ The construction of the confidence interval is best shown by a plot of the smoot
 In this toy example, the exact likelihood can be calculated using the Kalman filter, and this is carried out by the \code{panelGompertzLikelihood} function.
 The likelihood can then be maximized using a general-purpose optimization procedure such as \code{optim()} in R.
 With large numbers of parameters, and no guarantee of convexity, this numerical optimization is not entirely routine.
-One might consider a block optimization strategy, but here we carry out a simple global search, which took 15.47 minutes to compute the profile likelihood, once parallelized.
+One might consider a block optimization strategy, but here we carry out a simple global search, which took 15.5 minutes to compute the profile likelihood, once parallelized.
 The deterministic search is also not entirely smooth, and so we apply MCAP as for the Monte Carlo search.
 Both deterministic and Monte Carlo optimizations can benefit from a block optimization strategy which alternates between shared and unit-specific parameters \citep{breto19}.
 Such algorithms can be built using the \panelPomp functions we have demonstrated, and they will be incorporated into the package once they have been more extensively researched.
@@ -946,7 +948,7 @@ The source code for this article is at \url{https://github.com/cbreto/panelPomp/
 
 \section*{Acknowledgments}
 The results in this paper were obtained using \R~4.4.1 with \pkg{panelPomp}~1.3.0 and pkg{pomp}~5.9.0.0.
-This work was supported by National Science Foundation grants DMS-1761603 and DMS-1646108, and National Institutes of Health grants 1-U54-GM111274 and 1-U01-GM110712.
+This work was supported by National Science Foundation grants DMS-1761603 and DMS-1646108, National Institutes of Health grants 1-U54-GM111274 and 1-U01-GM110712, and by MCIN/AEI/10.13039/501100011033 grants PID2020-116242RB-I00 and PID2023-152348NB-I00
 
 \bibliographystyle{jasa3}
 
