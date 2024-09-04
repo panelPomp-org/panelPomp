@@ -16,8 +16,6 @@ README\.(.?)$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^javascripts$
-^params\.json$
 \.Rprofile
 \.Rhistory
 \.NEWS
