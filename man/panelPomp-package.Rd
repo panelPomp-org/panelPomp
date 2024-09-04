@@ -84,7 +84,7 @@ and \code{panelRandomWalk()} functions.
 \breto2020
 }
 \seealso{
-\link[=pomp-package]{pomp package}, \link{panelPomp}
+\link[pomp:pomp-package]{pomp package}, \link{panelPomp}
 }
 \author{
 \strong{Maintainer}: Carles Breto \email{carles.breto@uv.es} (\href{https://orcid.org/0000-0003-4695-4902}{ORCID})

@@ -1,5 +1,5 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu
 
@@ -177,8 +177,8 @@ $specific
 param   unit1 unit2 unit3 unit4 unit5
   r       0.1   0.1  0.10   0.1   0.2
   K       1.0   1.0  1.00   1.0   2.0
-  sigma   0.5   0.5  0.75   0.5   0.5
   X.0     1.0   1.0  1.00   1.0   1.0
+  sigma   0.5   0.5  0.75   0.5   0.5
 
 summary of first panel unit ("unit1"):
 <object of class ‘pomp’>

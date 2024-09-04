@@ -67,7 +67,7 @@ identical(prw,prw2) # TRUE
 \king2016
 }
 \seealso{
-\pkg{pomp}'s constructor at \link[=pomp]{pomp}
+\pkg{pomp}'s constructor at \link[pomp]{pomp}
 
 Other panelPomp workhorse functions: 
 \code{\link{mif2}()},
