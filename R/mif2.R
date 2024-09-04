@@ -40,7 +40,7 @@ NULL
 #'
 #' \king2016
 #' @family panelPomp workhorse functions
-#' @seealso \pkg{pomp}'s mif2 at \link[=mif2,pomp-method]{mif2},
+#' @seealso \pkg{pomp}'s mif2 at \link[pomp]{mif2},
 #' \link{panel_loglik}
 NULL
 

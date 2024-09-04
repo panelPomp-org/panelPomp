@@ -128,7 +128,7 @@ traces(mmp)
 \king2016
 }
 \seealso{
-\pkg{pomp}'s mif2 at \link[=mif2,pomp-method]{mif2},
+\pkg{pomp}'s mif2 at \link[pomp]{mif2},
 \link{panel_loglik}
 
 Other panelPomp workhorse functions: 

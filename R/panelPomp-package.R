@@ -70,7 +70,7 @@
 #'
 #' @references \breto2020
 #'
-#' @seealso \link[=pomp-package]{pomp package}, \link{panelPomp}
+#' @seealso \link[pomp:pomp-package]{pomp package}, \link{panelPomp}
 #'
 #' @keywords models datasets ts
 #'

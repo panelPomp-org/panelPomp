@@ -17,7 +17,7 @@ NULL
 #'
 #' \breto2020
 #' @family panelPomp workhorse functions
-#' @seealso \pkg{pomp}'s pfilter at \link[=pfilter,pomp-method]{pfilter}, \link{panel_loglik}
+#' @seealso \pkg{pomp}'s pfilter at \link[pomp:pfilter]{pfilter}, \link{panel_loglik}
 NULL
 
 #' @rdname pfilter

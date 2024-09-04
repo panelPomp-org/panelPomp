@@ -47,7 +47,7 @@ NULL
 #'
 #' \king2016
 #' @family panelPomp workhorse functions
-#' @seealso \pkg{pomp}'s constructor at \link[=pomp]{pomp}
+#' @seealso \pkg{pomp}'s constructor at \link[pomp]{pomp}
 NULL
 
 #' @rdname panelPomp
