@@ -2,26 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeswheel.github.io/panelPomp/todo.html</loc>
-    <lastmod>2024-09-05T16:07:35.858Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/bibliography.html</loc>
-    <lastmod>2024-09-05T16:07:35.858Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/news.html</loc>
-    <lastmod>2024-09-05T16:07:35.858Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/vignettes/getting-started.html</loc>
-    <lastmod>2024-09-05T16:09:21.027Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeswheel.github.io/panelPomp/index.html</loc>
-    <lastmod>2024-09-05T16:07:35.858Z</lastmod>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
   </url>
   <url>
     <loc>https://jeswheel.github.io/panelPomp/about.html</loc>
-    <lastmod>2024-09-05T16:07:35.858Z</lastmod>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/index.html</loc>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/vignettes/getting-started.html</loc>
+    <lastmod>2024-09-05T18:53:08.193Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/governance.html</loc>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/news.html</loc>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/bibliography.html</loc>
+    <lastmod>2024-09-05T18:51:30.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeswheel.github.io/panelPomp/Governance.html</loc>
+    <lastmod>2024-09-05T18:53:07.969Z</lastmod>
   </url>
 </urlset>
