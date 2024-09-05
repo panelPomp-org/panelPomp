@@ -103,19 +103,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \if0\blind
-% {
-%   \title{\bf Likelihood Based Inference for ARMA Models}
-%   \author{
-%     Carles Bret\'o, Universitat de Val\`encia\\
-%     Jesse Wheeler, University of Michigan\\
-%     Edward L. Ionides, University of Michigan\\
-%     Aaron A. King, University of Michigan}
-%   \maketitle
-% } \fi
-
-\if0\blind
-{
   \title{\bf A tutorial on panel data analysis using partially observed Markov processes via the \R package \panelPomp}
 
   \author[1]{Carles Bret\'o}
@@ -123,11 +110,11 @@
   \author[2]{Edward L. Ionides}
   \author[2]{Aaron A. King}
 
+
   \affil[1]{Universitat de Val\`encia}
   \affil[2]{University of Michigan}
 
   \maketitle
-} \fi
 
 \if1\blind
 {
@@ -175,7 +162,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   fig.align = 'center',
-  dev = 'cairo_pdf'
+  dev = 'cairo_pdf',
+  width=80
 )
 
 # Setting black and white ggplot2 theme for entire document.
@@ -369,7 +357,7 @@ Alternatively, we can consider the parameters as a single named vector, with a n
 Model parameters can be extracted and set in this vector-format using the functions \code{coef()} and \code{coef()<-}, respectively.
 Alternatively, unit-specific and shared parameters can be extracted using functions \code{specific()} and \code{shared()}, and modified using the equivalent setter functions \code{specific()<-} and \code{shared()<-}.
 For example, all shared and a subset of unit-specific parameters (from units 1--3) can be extracted in vector format via
-<<coef,echo=T>>=
+<<coef,echo=T,size="small">>=
 coef(gomp[1:3])
 @
 \noindent or in a list format using the \code{format = `list'} argument
@@ -546,8 +534,9 @@ These perturbations could follow an arbitrary distribution within the theoretica
   \caption{
 %    \textbf{Panel iterated filtering}.
     \texttt{mif2$\big($pp, Nmif{\argequals}$M$, Np{\argequals}$J$,
-start{\argequals}$(\shared^0_{\nshared},\specific^0_{\nspecific,\unit})$,
-rw\_sd{\argequals}$(\sigma^\Shared_{\nshared,\time},\sigma^\Specific_{\nspecific,\unit,\time})$,
+start{\argequals}$(\shared^0_{\nshared},\specific^0_{\nspecific,\unit})$,\\
+rw\_sd{\argequals}$(\sigma^\Shared_{\nshared,\time},
+\sigma^\Specific_{\nspecific,\unit,\time})$,
 cooling.factor.50{\argequals}$\rho^{50}\big)$}, where \code{pp} is a \code{panelPomp} object containing data and defined \code{rprocess}, \code{dmeasure}, \code{rinit} and \code{partrans} components.
     \label{alg:pif}
     }
@@ -692,7 +681,7 @@ The perturbations, determined by the \code{rw\_sd} argument, may be a list givin
 When only one specification for a unit-specific parameter is given (as we do for $K_\unit$ here) the same perturbation is used for all units.
 
 We can check on convergence of the searches, and possibly diagnose improvements in the choices of algorithmic parameters, by consulting trace plots of the searches available via the \code{traces} method for class \code{mifd.ppomp}.
-This follows recommendations by \citep{ionides06} and \citep{king16}.
+This follows recommendations by \citet{ionides06} and \citet{king16}.
 
 An issue characteristic of PanelPOMP models is using the panel structure to facilitate the large number of parameters arising when unit-specific parameters are specified for a large number of units.
 For a fixed value of the shared parameters, the likelihood of the unit-specific parameters factorizes over the units.
@@ -733,6 +722,9 @@ This took \Sexpr{myRound(block_time["elapsed"]/60,1)} minutes.
 
 We expect Monte Carlo estimates of the maximized log likelihood functions to fall below the actual (usually unknown) value.
 This is in part because imperfect maximization can only reduce the maximized likelihood, and in part a consequence of Jensen's inequality applied to the likelihood evaluation: the unbiased SMC likelihood evaluation has a negative bias on estimation of the log likelihood.
+
+A different block approach, related to the iterated block particle filter for spatiotemporal POMP models \citep{ning23,ionides22}, is implemented using the \code{block=TRUE} argument to \code{panelPomp::mif2}.
+Recent experiments suggestion this approach justifies further consideration.
 
 \subsection{Monte Carlo profile likelihood}
 
@@ -861,8 +853,8 @@ The likelihood can then be maximized using a general-purpose optimization proced
 With large numbers of parameters, and no guarantee of convexity, this numerical optimization is not entirely routine.
 One might consider a block optimization strategy, but here we carry out a simple global search, which took \Sexpr{myRound(exact_profile_time["elapsed"]/60,1)} minutes to compute the profile likelihood, once parallelized.
 The deterministic search is also not entirely smooth, and so we apply MCAP as for the Monte Carlo search.
-Both deterministic and Monte Carlo optimizations can benefit from a block optimization strategy which alternates between shared and unit-specific parameters \citep{breto19}.
-Such algorithms can be built using the \panelPomp functions we have demonstrated, and they will be incorporated into the package once they have been more extensively researched.
+The deterministic search also benefits from a block optimization strategy, alternating between shared and unit-specific parameters, as used for the stochastic search \citep{breto19}.
+
 
 <<mcap-plot,echo=F,fig.width=6,fig.height=4,out.width="5in",fig.cap="The Monte Carlo adjusted profile confidence interval (solid red lines, evaluation points shown as circles). Construction using deterministic optimization of the likelihood calculated by the Kalman filter (dashed lines, evaluation points show as squares).">>=
 
@@ -906,7 +898,7 @@ The workflow in Section~\ref{sec:meth} has a simple parallel structure that can 
 Embarrassingly parallel computations, such as computing the profile likelihood function at a grid of points, or replicated evaluations of the likelihood function, can be parallelized using the \pkg{foreach} package.
 
 Panel data is widely available: for many experimental and observational systems it is more practical to collect short time series on many units than to obtain one long time series.
-For time series data, fitting mechanistic models specified as partially observed Markov processes has found numerous applications for formulating and answering scientific hypotheses. \citep{breto09,king16}.
+For time series data, fitting mechanistic models specified as partially observed Markov processes has found numerous applications for formulating and answering scientific hypotheses \citep{breto09,king16}.
 However, there are remarkably few examples in the literature fitting mechanistic nonlinear non-Gaussian partially observed stochastic dynamic models to panel data.
 The \panelPomp package offers opportunities to remedy this situation.
 
