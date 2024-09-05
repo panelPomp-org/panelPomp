@@ -29,8 +29,8 @@ We have a few rules, sufficient for a small and friendly project.
 ## Version Numbering 
 
 The panelPomp package has undergone several style changes in the version numbering system used.
-Early versions of the package used only a two digit numbering system (X.Y).
-Later this was updated to a three digit system with update 0.5.4, and a four digit system with version 0.10.2.0.
+Early versions of the package used only a two digit numbering system (`X.Y`).
+Later this was updated to a three digit system with update `0.5.4`, and a four digit system with version `0.10.2.0`.
 After that point, the package underwent several changes between the three and four digit numbering systems.
 Starting September 5, 2024, the package will now revert to the four digit numbering system, and all updates to the package are expected to follow this style. 
 The goals of this change include: 
@@ -41,11 +41,14 @@ The goals of this change include:
 
 The four number system works as follows: 
 
+```
 W.X.Y.Z
+```
+
 
 Every update of the package will increment one of the version numbers by one.
 If any of the version numbers increments, then all subsequent version numbers will reset to zero.
-Changes in W reflect major and breaking changes. 
-The digits W.X will match the latest CRAN release. 
-Changes in Y represent user-facing changes, and changes in Z reflect internal changes only. 
+Changes in `W` reflect major and breaking changes. 
+The digits `W.X` will match the latest CRAN release. 
+Changes in `Y` represent user-facing changes, and changes in `Z` reflect internal changes only. 
 
