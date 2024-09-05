@@ -87,13 +87,13 @@ and \code{panelRandomWalk()} functions.
 \link[pomp:pomp-package]{pomp package}, \link{panelPomp}
 }
 \author{
-\strong{Maintainer}: Carles Breto \email{carles.breto@uv.es} (\href{https://orcid.org/0000-0003-4695-4902}{ORCID})
+\strong{Maintainer}: Jesse Wheeler \email{jeswheel@umich.edu} (\href{https://orcid.org/0000-0003-3941-3884}{ORCID})
 
 Authors:
 \itemize{
+  \item Carles Breto \email{carles.breto@uv.es} (\href{https://orcid.org/0000-0003-4695-4902}{ORCID})
   \item Edward L. Ionides (\href{https://orcid.org/0000-0002-4190-0174}{ORCID})
   \item Aaron A. King (\href{https://orcid.org/0000-0001-6159-3207}{ORCID})
-  \item Jesse Wheeler \email{jeswheel@umich.edu} (\href{https://orcid.org/0000-0003-3941-3884}{ORCID})
 }
 
 }

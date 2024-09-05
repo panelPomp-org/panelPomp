@@ -1,5 +1,17 @@
 \name{NEWS}
 \title{News for package `panelPomp'}
+\section{Changes in \pkg{panelPomp} version 1.4.0.0}{
+  \itemize{
+    \item Changed package maintainers
+    \item Updated package governance file and website
+    \item Standardized package version numbering system to four point system.
+  }
+}
+\section{Changes in \pkg{panelPomp} version 1.3.1}{
+  \itemize{
+    \item Fixed broken links in function documentation.
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.3.0}{
   \itemize{
     \item Changed the default \code{cooling.type} argument in the \code{mif2()} function to be \code{"geometric"} in order to be consistent with the \code{pomp} package.

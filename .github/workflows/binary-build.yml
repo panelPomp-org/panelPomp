@@ -9,7 +9,7 @@ on:
 name: binary-build
 
 env:
-  release_name: ${{ vars.repo_name }}_${{ github.ref_name }}
+  release_name: panelPomp_${{ github.ref_name }}
 
 jobs:
   source_build:          

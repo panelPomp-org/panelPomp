@@ -5,6 +5,7 @@ project:
     - html/*
     - help/*
     - NEWS.html
+    - Governance.md
     - R.css
     - vignettes/*
 
@@ -29,6 +30,8 @@ website:
         text: Manual
       - href: news.qmd
         text: NEWS
+      - href: governance.qmd
+        text: Contributing
       - text: "Tutorials"
         menu:
           - href: vignettes/getting-started.qmd
@@ -41,6 +44,5 @@ format:
     theme: flatly
     css: styles.css
     toc: true
-
 
 
