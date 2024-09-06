@@ -1,1 +1,1 @@
-Sitemap: https://jeswheel.github.io/panelPomp/sitemap.xml
+Sitemap: https://panelPomp-org.github.io/panelPomp/sitemap.xml
