@@ -3,7 +3,7 @@ name: Render and Deploy Quarto Website
 on:
   push:
     branches:
-      - master  # Set your default branch name
+      - master
     paths:
       - '.github/workflows/render-website.yml'
       - 'DESCRIPTION'
@@ -16,6 +16,7 @@ on:
 
 jobs:
   checkpkg:
+    if: github.repository == 'panelPomp-org/panelPomp'
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -41,6 +42,7 @@ jobs:
           upload-snapshots: true
 
   deploy:
+    if: github.repository == 'panelPomp-org/panelPomp'
     needs: checkpkg
     runs-on: ubuntu-latest
     permissions:
