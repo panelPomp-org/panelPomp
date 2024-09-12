@@ -39,3 +39,7 @@ check
 ^(.+?)\.tar\.gz
 ^(.+?)\.tgz
 ^(.+?)\.zip
+^revdep$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^\.github$

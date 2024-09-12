@@ -2,3 +2,5 @@
 *.Rcheck
 Library/
 PACKAGES*
+library.noindex/
+checks.noindex/

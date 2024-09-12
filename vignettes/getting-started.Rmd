@@ -36,7 +36,7 @@ Panel data arise when time series are measured on a collection of units.
 When the time series for each unit is modeled as a partially observed Markov process (POMP) the collection of these models is a PanelPOMP.
 The `panelPomp` package provides facilities for inference on panel data using PanelPOMP models. 
 Monte Carlo methods used for POMP models require adaptation for PanelPOMP models due to the higher dimensionality of panel data.
-This package builds on the functionality and tools of the popular [`pomp` R package](kingaa.github.io/pomp), providing a computationally efficient framework that can be used to simulate from, fit, and diagnose PanelPOMP models. 
+This package builds on the functionality and tools of the popular [`pomp` R package](https://kingaa.github.io/pomp/), providing a computationally efficient framework that can be used to simulate from, fit, and diagnose PanelPOMP models. 
 As such, a basic working knowledge of the `pomp` package is recommended. 
 Here we cover some of the necessary basics. 
 See [Getting Started With `pomp`](https://kingaa.github.io/pomp/vignettes/getting_started.html) for an introductory Vignette to the `pomp` package. 
