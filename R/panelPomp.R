@@ -121,8 +121,8 @@ setClass(
 #' @examples
 #' ## recreate the 'panelRandomWalk()' example
 #' prw <- panelRandomWalk()
-#' prw2 <- panelPomp(unit_objects(prw),params=coef(prw))
-#' identical(prw,prw2) # TRUE
+#' prw2 <- panelPomp(unit_objects(prw), params = coef(prw))
+#' identical(prw, prw2) # TRUE
 #' @author Carles \Breto
 #' @export
 panelPomp <- function (object, shared, specific, params) {

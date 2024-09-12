@@ -102,9 +102,12 @@ Error : in ‘panelPomp’: ‘object’ must be either a ‘panelPomp’ object
 > 
 > ep <- "Error : in ''panelPomp'': "
 > ## test checks for missing arguments in panelPomp function
-> test(wQuotes(ep,"''object'' is a required argument.\n"),
-+      panelPomp())
+> test(
++   wQuotes(ep, "''object'' is a required argument.\n"),
++   panelPomp()
++ )
 [1] TRUE
+> 
 > test(wQuotes(ep,"''object'' must be either a ''panelPomp'' object or a list of",
 +              " ''pomp'' objects.","\n"),
 +      panelPomp(list(a=1)))
