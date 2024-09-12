@@ -18,9 +18,9 @@ website:
         aria-label: GitHub
         menu:
           - text: Source Code
-            href: https://github.com/cbreto/panelPomp
+            href: https://github.com/panelPomp-org/panelPomp
           - text: Report a Bug
-            href: https://github.com/cbreto/panelPomp/issues
+            href: https://github.com/panelPomp-org/panelPomp/issues
     left:
       - href: about.qmd
         text: About
