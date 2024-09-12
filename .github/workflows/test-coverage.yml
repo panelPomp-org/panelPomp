@@ -11,6 +11,7 @@ on:
       - tests/**
       - man/**
       - data/**
+      - .github/workflows/test-coverage.yml
   pull_request:
     branches: [master]
     paths:
