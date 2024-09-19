@@ -58,8 +58,8 @@ construct the corresponding \code{panelPomp} object.
 \examples{
 ## recreate the 'panelRandomWalk()' example
 prw <- panelRandomWalk()
-prw2 <- panelPomp(unit_objects(prw),params=coef(prw))
-identical(prw,prw2) # TRUE
+prw2 <- panelPomp(unit_objects(prw), params = coef(prw))
+identical(prw, prw2) # TRUE
 }
 \references{
 \breto2020

@@ -31,6 +31,7 @@ c(
     title="{panelPomp}: {Inference} for Panel Partially Observed {Markov} Processes",
     author=c(
       as.person("Carles Bret\\'o"),
+      as.person("Jesse Wheeler"),
       as.person("Edward L. Ionides"),
       as.person("Aaron A. King")
     ),
@@ -38,7 +39,7 @@ c(
     note=note1,
     url=meta$URL,
     textVersion=paste0(
-      "C. Bretó, E. L. Ionides and A. A. King"," (",year,"). ",
+      "C. Bretó, J. Wheeler, E. L. Ionides and A. A. King"," (",year,"). ",
       "panelPomp: Statistical Inference for Partially Observed Markov Processes. ",
       note2,". ",meta$URL
     )

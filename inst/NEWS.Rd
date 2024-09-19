@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
+\section{Changes in \pkg{panelPomp} version 1.4.0.1}{
+  \itemize{
+    \item Added Jesse Wheeler as one of the package authors in citation file.
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.4.0.0}{
   \itemize{
     \item Changed package maintainers
