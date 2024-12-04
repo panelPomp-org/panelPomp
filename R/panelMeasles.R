@@ -27,6 +27,7 @@ panelMeasles = function(
     last_year = 1963,
     dt = 1/365.25
 ){
+  ## ----prep-model-------------------------------------------------
   rproc <- pomp::Csnippet("
     double beta, br, seas, foi, dw, births;
     double rate[6], trans[6];
@@ -147,24 +148,28 @@ panelMeasles = function(
   # Population list
   demog_list = vector("list", length(units))
   for(i in seq_along(units)){
-    dat_list[[i]] = measles |>
-      dplyr::mutate(year = as.integer(format(date,"%Y"))) |>
-      dplyr::filter(
-        .data$unit == units[[i]] & .data$year >= first_year &
-          .data$year < (last_year + 1)
-      ) |>
-      dplyr::mutate(
-        time = julian(
-          .data$date,
-          origin = as.Date(paste0(first_year, "-01-01"))
-        )/365.25 + first_year
-      ) |>
-      dplyr::filter(.data$time > first_year & .data$time < (last_year + 1)) |>
-      dplyr::select("time", "cases")
+    me = measles
+    me$year = as.integer(format(me$date,"%Y"))
+    me = subset(
+      me,
+      me$unit == units[[i]] &
+      me$year >= first_year &
+      me$year < (last_year + 1)
+    )
+    me$time = time = julian(
+      me$date,
+      origin = as.Date(paste0(first_year, "-01-01"))
+    )/365.25 + first_year
+    me = subset(
+      me,
+      me$year >= first_year &
+      me$year < (last_year + 1),
+      select = c("time", "cases")
+    )
+    dat_list[[i]] = me
 
-    demog_list[[i]] = demog |>
-      dplyr::filter(.data$unit == units[[i]]) |>
-      dplyr::select(-"unit")
+    demog_list[[i]] = subset(demog, demog$unit == units[[i]])
+    demog_list[[i]] = demog_list[[i]][c("year", "pop", "births")]
   }
   ## ----prep-covariates-------------------------------------------------
   delay = 4 # number of years before a newborn can be infected
@@ -196,17 +201,16 @@ panelMeasles = function(
          )$y
        }
     )
-    covar_list[[i]] = dmgi |>
-      dplyr::reframe(
-        time = times,
-        pop = pop_interp,
-        birthrate = births_interp
-      )
+    covar_list[[i]] = data.frame(
+      time = times,
+      pop = pop_interp,
+      birthrate = births_interp
+    )
   }
 
   ## ----pomp-construction-----------------------------------------------
   lapply(seq_along(units), function(i){
-    time = covar_list[[i]][[1]]
+    time = covar_list[[i]]$time
     dat_list[[i]] |>
       pomp::pomp(
         t0 = with(dat_list[[i]], 2*time[1] - time[2]),
@@ -226,6 +230,7 @@ panelMeasles = function(
 
   ## ----panelPomp-construction-----------------------------------------------
   if(is.null(starting_pparams)){
+    # AK_pparams comes from R/sysdata.rda
     shared = AK_pparams$shared
     specific = AK_pparams$specific
   } else {
