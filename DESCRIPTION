@@ -33,13 +33,17 @@ Collate:
     'mif2_methods.R'
     'panelGompertz.R'
     'panelGompertzLikelihood.R'
+    'panelMeasles.R'
     'panelRandomWalk.R'
     'panel_designs.R'
     'plot.R'
     'simulate.R'
+    'twentycities.R'
+    'ur_measles.R'
 Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
     rmarkdown,
     bookdown
 VignetteBuilder: knitr
+LazyData: true
