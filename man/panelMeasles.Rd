@@ -16,11 +16,11 @@ panelMeasles(
 )
 }
 \arguments{
-\item{units}{Character vector of units in \code{ur_measles} to be used in the
+\item{units}{Character vector of units in \link{uk_measles} to be used in the
 panel model.}
 
-\item{starting_pparams}{Parameters in the format of \code{pparams()} output. Set
-to NULL to assign NA values. Only for panelPomp models currently.}
+\item{starting_pparams}{Parameters in the list format, having shared and
+specific components. Set to NULL to assign NA values.}
 
 \item{interp_method}{Method used to interpolate population and births.
 Possible options are \code{"shifted_splines"} and \code{"linear"}.}
@@ -38,6 +38,6 @@ A panelPomp object.
 Make a panelPomp model using UK measles data
 }
 \examples{
-panelMeasles()
+panelMeasles(units = "London")
 
 }

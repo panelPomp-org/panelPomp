@@ -1,8 +1,18 @@
 library(dplyr)
 library(tidyr)
 library(tibble)
-load("R/sysdata.rda")
-urr = urban_rural_raw
+
+#### Code used to move the urban_rural_raw into the data-raw folder:
+# load("R/sysdata.rda")  # Done while the urban_rural_raw is part of this data
+# saveRDS(urban_rural_raw, 'data-raw/urban_rural_raw.rds')
+#
+#
+#### Also used to remove the urban_rural_raw from sysdata
+# load("R/sysdata.rda")
+# usethis::use_data(AK_pparams, internal = TRUE, overwrite = TRUE)
+
+urr = readRDS('data-raw/urban_rural_raw.rds')
+load('data/twentycities.rda')  # TODO: Can we document where this came from?
 
 dates = as.Date("1944-01-07") + 7*(0:(nrow(urr$measles_urban) - 1))
 
@@ -35,20 +45,26 @@ coord = rbind(urr$coord_rural, urr$coord_urban) |>
   rename(unit = "X", long = "Long", lat = "Lat") |>
   as_tibble()
 
-ur_measles = list(
-  measles = measles,
-  demog = demog,
-  coord = coord
+sub_units <- demog |>
+  group_by(unit) |>
+  summarize(mean_pop = mean(pop)) |>
+  slice_max(prop = 0.25, order_by = mean_pop) |>  # Get the top 25% of locations, by average population
+  pull(unit)
+
+uk_measles = list(
+  measles = measles |> filter(unit %in% sub_units),
+  demog = demog |> filter(unit %in% sub_units),
+  coord = coord |> filter(unit %in% sub_units)
 )
 
-preexisting_units = ur_measles$coord$unit[
-  ur_measles$coord$unit %in% twentycities$coord$unit
+preexisting_units = uk_measles$coord$unit[
+  uk_measles$coord$unit %in% twentycities$coord$unit
 ]
-ur_measles$coord = ur_measles$coord |>
+uk_measles$coord = uk_measles$coord |>
   dplyr::bind_rows(
     dplyr::filter(twentycities$coord, !(unit %in% preexisting_units))
   )
 
-ur_measles = lapply(ur_measles, as.data.frame)
+uk_measles = lapply(uk_measles, as.data.frame)
 
-usethis::use_data(ur_measles, overwrite = TRUE)
+usethis::use_data(uk_measles, overwrite = TRUE)

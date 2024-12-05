@@ -1,9 +1,9 @@
 #' Make a panelPomp model using UK measles data
 #'
-#' @param units Character vector of units in `ur_measles` to be used in the
+#' @param units Character vector of units in [uk_measles] to be used in the
 #'   panel model.
-#' @param starting_pparams Parameters in the format of `pparams()` output. Set
-#'   to NULL to assign NA values. Only for panelPomp models currently.
+#' @param starting_pparams Parameters in the list format, having shared and
+#'   specific components. Set to NULL to assign NA values.
 #' @param interp_method Method used to interpolate population and births.
 #'   Possible options are `"shifted_splines"` and `"linear"`.
 #' @param first_year Integer for the first full year of data desired.
@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' panelMeasles()
+#' panelMeasles(units = "London")
 #'
 panelMeasles = function(
     units = c("Bedwellty", "Birmingham", "Bradford", "Bristol", "Cardiff",
@@ -27,7 +27,11 @@ panelMeasles = function(
     last_year = 1963,
     dt = 1/365.25
 ){
-  ## ----prep-model-------------------------------------------------
+
+  ep <- wQuotes("in ''panelMeasles'': ")
+  interp_method <- match.arg(interp_method)
+
+  # Create rproc
   rproc <- pomp::Csnippet("
     double beta, br, seas, foi, dw, births;
     double rate[6], trans[6];
@@ -80,6 +84,7 @@ panelMeasles = function(
     C += trans[4];           // true incidence
   ")
 
+  # Create dmeas
   dmeas <- pomp::Csnippet("
     double m = rho*C;
     double v = m*(1.0 - rho + psi*psi*m);
@@ -97,6 +102,7 @@ panelMeasles = function(
     if (give_log) lik = log(lik);
   ")
 
+  # Create rmeas
   rmeas <- pomp::Csnippet("
     double m = rho*C;
     double v = m*(1.0-rho+psi*psi*m);
@@ -109,6 +115,7 @@ panelMeasles = function(
     }
   ")
 
+  # Create rinit
   rinit <- pomp::Csnippet("
     double m = pop/(S_0+E_0+I_0+R_0);
     S = nearbyint(m*S_0);
@@ -130,27 +137,27 @@ panelMeasles = function(
                  "S_0","E_0","I_0","R_0")
   states = c("S", "E", "I", "R", "W", "C")
 
-  choose_units = function(data, units){
-    out = lapply(seq_along(data), function(z){
+  choose_units <- function(data, units){
+    out <- lapply(seq_along(data), function(z){
       data[[z]][data[[z]]$unit %in% units,]
     })
-    names(out) = names(data)
+    names(out) <- names(data)
     out
   }
-  data = choose_units(panelPomp::ur_measles, units)
-  measles = data$measles
-  demog = data$demog
+  data <- choose_units(panelPomp::uk_measles, units)
+  measles <- data$measles
+  demog <- data$demog
 
-  ## ----prep-data-------------------------------------------------
-  units = unique(measles$unit)
+  ## Prep Data
+  units <- unique(measles$unit)
   # Obs list
-  dat_list = vector("list", length(units))
+  dat_list <- vector("list", length(units))
   # Population list
-  demog_list = vector("list", length(units))
+  demog_list <- vector("list", length(units))
   for(i in seq_along(units)){
-    me = measles
-    me$year = as.integer(format(me$date,"%Y"))
-    me = subset(
+    me <- measles
+    me$year <- as.integer(format(me$date,"%Y"))
+    me <- subset(
       me,
       me$unit == units[[i]] &
       me$year >= first_year &
@@ -160,24 +167,26 @@ panelMeasles = function(
       me$date,
       origin = as.Date(paste0(first_year, "-01-01"))
     )/365.25 + first_year
-    me = subset(
+    me <- subset(
       me,
       me$year >= first_year &
       me$year < (last_year + 1),
       select = c("time", "cases")
     )
-    dat_list[[i]] = me
+    dat_list[[i]] <- me
 
-    demog_list[[i]] = subset(demog, demog$unit == units[[i]])
-    demog_list[[i]] = demog_list[[i]][c("year", "pop", "births")]
+    demog_list[[i]] <- subset(demog, demog$unit == units[[i]])
+    demog_list[[i]] <- demog_list[[i]][c("year", "pop", "births")]
   }
-  ## ----prep-covariates-------------------------------------------------
-  delay = 4 # number of years before a newborn can be infected
-  covar_list = vector("list", length(units))
+
+  ## Prep Covariates
+  delay <- 4 # number of years before a newborn can be infected
+  covar_list <- vector("list", length(units))
+
   for(i in seq_along(units)){
-    dmgi = demog_list[[i]]
-    times = seq(from = min(dmgi$year), to = max(dmgi$year), by = 1/12)
-    switch(interp_method[[1]],
+    dmgi <- demog_list[[i]]
+    times <- seq(from = min(dmgi$year), to = max(dmgi$year), by = 1/12)
+    switch(interp_method,
        shifted_splines = {
          pop_interp = stats::predict(
            stats::smooth.spline(x = dmgi$year, y = dmgi$pop),
@@ -201,16 +210,16 @@ panelMeasles = function(
          )$y
        }
     )
-    covar_list[[i]] = data.frame(
+    covar_list[[i]] <- data.frame(
       time = times,
       pop = pop_interp,
       birthrate = births_interp
     )
   }
 
-  ## ----pomp-construction-----------------------------------------------
+  ## Pomp Construction
   lapply(seq_along(units), function(i){
-    time = covar_list[[i]]$time
+    time <- covar_list[[i]]$time
     dat_list[[i]] |>
       pomp::pomp(
         t0 = with(dat_list[[i]], 2*time[1] - time[2]),
@@ -226,21 +235,18 @@ panelMeasles = function(
         paramnames = paramnames
       )
   }) -> pomp_list
-  names(pomp_list) = units
+  names(pomp_list) <- units
 
-  ## ----panelPomp-construction-----------------------------------------------
+  ## panelPomp construction
   if(is.null(starting_pparams)){
     # AK_pparams comes from R/sysdata.rda
-    shared = AK_pparams$shared
-    specific = AK_pparams$specific
+    shared <- AK_pparams$shared
+    specific <- AK_pparams$specific[, names(pomp_list)]
   } else {
-    shared = starting_pparams$shared
-    specific = as.matrix(starting_pparams$specific)
+    shared <- starting_pparams$shared
+    specific <- as.matrix(starting_pparams$specific)
     if(!setequal(c(names(shared), rownames(specific)), paramnames)){
-      stop(
-        "Parameter names in starting_pparams do not match those in model.",
-        call. = FALSE
-      )
+      stop(ep,"Parameter names in starting_pparams do not match those in model.",call.=FALSE)
     }
   }
   panelPomp::panelPomp(
