@@ -3,7 +3,7 @@
 \docType{data}
 \name{uk_measles}
 \alias{uk_measles}
-\title{Weekly reported measles data for 355 locations in the UK}
+\title{Weekly reported measles data for 362 locations in the UK}
 \format{
 \subsection{\code{uk_measles}}{
 
@@ -46,7 +46,7 @@ unit names are for urban areas. NOTE: not all units have coordinates.
 uk_measles
 }
 \description{
-Weekly reported measles data for 355 locations in the UK
+Weekly reported measles data for 362 locations in the UK
 }
 \references{
 \Korevaar2020

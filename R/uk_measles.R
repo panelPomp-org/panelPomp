@@ -1,4 +1,4 @@
-#' Weekly reported measles data for 355 locations in the UK
+#' Weekly reported measles data for 362 locations in the UK
 #'
 #' @format ## `uk_measles`
 #' A list of 3 data frames Unit names ending in `.RD` are for rural areas; other

@@ -51,6 +51,16 @@ sub_units <- demog |>
   slice_max(prop = 0.25, order_by = mean_pop) |>  # Get the top 25% of locations, by average population
   pull(unit)
 
+# Ensure that the following cities are included.
+include_cities <- c(
+  "Bedwellty", "Birmingham", "Bradford", "Bristol", "Cardiff", "Consett",
+  "Dalton.in.Furness", "Halesworth", "Hastings", "Hull", "Leeds", "Lees",
+  "Liverpool", "London", "Manchester", "Mold", "Northwich",
+  "Nottingham", "Oswestry", "Sheffield"
+)
+
+sub_units <- unique(c(sub_units, include_cities))
+
 uk_measles = list(
   measles = measles |> filter(unit %in% sub_units),
   demog = demog |> filter(unit %in% sub_units),
