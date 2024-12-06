@@ -96,6 +96,11 @@ Authors:
   \item Aaron A. King (\href{https://orcid.org/0000-0001-6159-3207}{ORCID})
 }
 
+Other contributors:
+\itemize{
+  \item Aaron Abkemeier \email{aaronabk@umich.edu} [contributor]
+}
+
 }
 \keyword{datasets}
 \keyword{models}

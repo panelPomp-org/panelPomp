@@ -1,0 +1,63 @@
+
+R version 4.4.2 (2024-10-31) -- "Pile of Leaves"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # check reproducibility over two randomly chosen seeds
+> if (file.exists("_options.R")) source("_options.R")
+> library(panelPomp,quietly=TRUE)
+> 
+> 
+> TESTS_PASS <- NULL
+> test <- function(expr1,expr2,all="TESTS_PASS",env=parent.frame(),...)
++   panelPomp:::test(expr1,expr2,all=all,env=env,...)
+> 
+> 
+> all_units <- c("Bedwellty", "Leeds", "Lees", "Liverpool", "Nottingham", "Oswestry")
+> 
+> po <- panelMeasles(units = all_units)
+> 
+> test(
++   length(po), length(all_units)
++ )
+[1] TRUE
+> 
+> test(
++   wQuotes(
++     "Error : in ''panelMeasles'': Parameter names in starting_pparams do not match those in model.\n"
++   ),
++   panelMeasles(
++     units = c('London', 'Leeds'),
++     starting_pparams = list(
++       shared = c("foo"),
++       specific = matrix(0, nrow = 2, ncol = 2, dimnames = list(c('par1', 'par2'), c('unit1', 'unit2')))
++     )
++   )
++ )
+[1] TRUE
+> 
+> test(
++   is(panelMeasles(units = 'Bristol', interp_method = 'linear'), 'panelPomp'),
++ )
+[1] TRUE
+> 
+> ## check whether all tests passed
+> all(get(eval(formals(test))$all))
+[1] TRUE
+> if (!all(get(eval(formals(test))$all))) stop("Not all tests passed!")
+> 
+> 

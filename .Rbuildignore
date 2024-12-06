@@ -43,3 +43,4 @@ check
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^\.github$
+^data-raw$

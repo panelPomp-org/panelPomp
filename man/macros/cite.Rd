@@ -20,3 +20,7 @@
 \newcommand{\tavare1997}{Tavare, S., Balding, D. J., Griffiths, R. C. and Donnelly, P. (1997) Inferring Coalescence Times from DNA Sequence Data. \emph{Genetics}, \bold{145}(2), 505--518. \doi{https://doi.org/10.1093/genetics/145.2.505}}
 
 \newcommand{\vittinghoff1999}{Vitinghoff, E., Douglas, J., Judon, F., McKiman, D., MacQueen, K. and Buchinder, S.P. (1999) Per-contact risk of human immunodificiency virus tramnsmision between male sexual partners. \emph{American journal of epidemiology}, \bold{150}(3), 306--311. \doi{https://doi.org/10.1093/oxfordjournals.aje.a010003}}
+
+\newcommand{\He2010}{D. He, E.L. Ionides, and A.A. King. Plug-and-play inference for disease dynamics: measles in large and small populations as a case study.  \emph{Journal of the Royal Society Interface} \bold{7}, 271--283, 2010.}
+
+\newcommand{\Korevaar2020}{Korevaar H, Metcalf CJ, Grenfell BT. 2020 Structure, space and size: competing drivers of variation in urban and rural measles transmission. J. R. Soc. Interface 17: 20200010. http://dx.doi.org/10.1098/rsif.2020.0010}
