@@ -23,6 +23,7 @@
 #'   \item{lat}{Latitude of city}
 #' }
 #'
+#' @references \He2010
 #'
 #' @source <https://kingaa.github.io/pomp/vignettes/twentycities.rda>
 "twentycities"

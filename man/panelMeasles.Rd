@@ -2,7 +2,7 @@
 % Please edit documentation in R/panelMeasles.R
 \name{panelMeasles}
 \alias{panelMeasles}
-\title{Make a panelPomp model using UK measles data}
+\title{Make a panelPomp model using UK measles data.}
 \usage{
 panelMeasles(
   units = c("Bedwellty", "Birmingham", "Bradford", "Bristol", "Cardiff", "Consett",
@@ -35,9 +35,19 @@ Possible options are \code{"shifted_splines"} and \code{"linear"}.}
 A panelPomp object.
 }
 \description{
-Make a panelPomp model using UK measles data
+The model is a modified \link{panelPomp} version of the model of
+He et al. 2010. The model is a stochastic SEIR model that accounts for
+population demographics in the form of births and deaths. Because of the
+increased transmission that results from school-aged children entering the
+susceptible pool once they begin attending classes for the first time, the
+model includes a birth-cohort effect, which moves a specified faction of
+the cohort into the susceptible pool all at once. The model also includes
+a seasonality in transmission rate that is larger during school terms thn
+it is during holidays.
 }
 \examples{
 panelMeasles(units = "London")
-
+}
+\references{
+\He2010
 }

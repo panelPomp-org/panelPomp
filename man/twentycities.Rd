@@ -47,4 +47,7 @@ twentycities
 \description{
 He et al. 2010 twenty UK cities weekly reported measles data
 }
+\references{
+\He2010
+}
 \keyword{datasets}

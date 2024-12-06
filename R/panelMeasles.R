@@ -1,4 +1,14 @@
-#' Make a panelPomp model using UK measles data
+#' Make a panelPomp model using UK measles data.
+#'
+#' The model is a modified [panelPomp::panelPomp] version of the model of
+#' He et al. 2010. The model is a stochastic SEIR model that accounts for
+#' population demographics in the form of births and deaths. Because of the
+#' increased transmission that results from school-aged children entering the
+#' susceptible pool once they begin attending classes for the first time, the
+#' model includes a birth-cohort effect, which moves a specified faction of
+#' the cohort into the susceptible pool all at once. The model also includes
+#' a seasonality in transmission rate that is larger during school terms thn
+#' it is during holidays.
 #'
 #' @param units Character vector of units in [uk_measles] to be used in the
 #'   panel model.
@@ -10,12 +20,13 @@
 #' @param last_year Integer for the last full year of data desired.
 #' @param dt Size of the time step.
 #'
+#' @references \He2010
+#'
 #' @return A panelPomp object.
 #' @export
 #'
 #' @examples
 #' panelMeasles(units = "London")
-#'
 panelMeasles = function(
     units = c("Bedwellty", "Birmingham", "Bradford", "Bristol", "Cardiff",
               "Consett", "Dalton.in.Furness", "Halesworth", "Hastings", "Hull",

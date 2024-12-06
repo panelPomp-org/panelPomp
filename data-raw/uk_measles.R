@@ -12,7 +12,7 @@ library(tibble)
 # usethis::use_data(AK_pparams, internal = TRUE, overwrite = TRUE)
 
 urr = readRDS('data-raw/urban_rural_raw.rds')
-load('data/twentycities.rda')  # TODO: Can we document where this came from?
+load('data/twentycities.rda')  # Data comes from https://kingaa.github.io/pomp/vignettes/twentycities.rda
 
 dates = as.Date("1944-01-07") + 7*(0:(nrow(urr$measles_urban) - 1))
 
