@@ -18,6 +18,7 @@ names,panelPomp-method	panelPomp_methods
 panel-designs	panel-designs
 panelGompertz	panelGompertz
 panelGompertzLikelihood	panelGompertzLikelihood
+panelMeasles	panelMeasles
 panelPomp	panelPomp
 panelPomp-class	panelPomp
 panelPomp_methods	panelPomp_methods
@@ -49,6 +50,8 @@ toMatrixPparams	params
 toParamList	panelPomp_methods
 toParamVec	params
 traces,mif2d.ppomp-method	mif2
+twentycities	twentycities
+uk_measles	uk_measles
 unitLogLik	unitLogLik
 unitlogLik	unitlogLik-deprecated
 unitLogLik,pfilterd.ppomp-method	pfilter
