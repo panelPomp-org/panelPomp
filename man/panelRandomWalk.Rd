@@ -33,7 +33,8 @@ panelRandomWalk()
 \seealso{
 Other panelPomp examples: 
 \code{\link{contacts}()},
-\code{\link{panelGompertz}()}
+\code{\link{panelGompertz}()},
+\code{\link{panelMeasles}()}
 }
 \author{
 Edward L. Ionides, Carles \Breto

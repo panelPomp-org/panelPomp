@@ -25,6 +25,10 @@ NULL
 #'   end time.}
 #'   \item{\code{[]}}{Take a subset of units.}
 #'   \item{\code{[[]]}}{Select the pomp object for a single unit.}
+#'   \item{specific}{Extracts the \code{specific} coefficients.}
+#'   \item{specific<-}{Assigns the \code{specific} coefficients.}
+#'   \item{shared}{Extracts the \code{shared} coefficients.}
+#'   \item{shared<-}{Assigns the \code{shared} coefficients.}
 #'   }
 #' @author Carles \Breto, Aaron A. King, Edward L. Ionides, Jesse Wheeler
 #' @family panelPomp methods
@@ -258,72 +262,13 @@ setMethod(
 )
 
 
-## COERCE METHODS
-#' @title Coercing \code{panelPomp} objects as \code{list}, \code{pompList} or
-#' \code{data.frame}
-#' @description When coercing to a \code{data.frame}, it coerces a
-#' \code{panelPomp} into a \code{data.frame}, assuming units share common
-#' variable names.
-## '@rdname' [either 'panelPomp_methods' or 'as'] doesn't seem to work with setAs()
-#' @name as
-#' @family panelPomp methods
-#' @return
-#' An object of class matching that specified in the second argument (\code{to=}).
-#' @author Carles \Breto
-setAs(from="panelPomp",to="data.frame",
-      def = function (from) {
-        x <- lapply(from@unit_objects,as,"data.frame")
-        for (u in seq_along(x)) {
-          x[[u]]$unit <- names(from@unit_objects)[[u]]
-        }
-        do.call(rbind,x)
-      }
-)
-
-#' @name as
-# '@rdname as' doesn't seem to work; if '@name as' is not repeated:
-# Warning: Block must have a @name
-# Either document an existing object or manually specify with @name
-# [however, '@title' and '@family' don't change their values in first '@name as']
-#' @description When coercing to a \code{list}, it extracts the
-#' \code{unit_objects} slot of \code{panelPomp} objects and attaches
-#' associated parameters.
-# @author Carles \Breto, Edward L. Ionides
-setAs(from="panelPomp",to="list",def = function (from) {
-  plist <- from@unit_objects
-  shared <- from@shared
-  specific <- from@specific
-  for(u in 1:length(plist)) {
-    coef(plist[[u]]) <- c(shared,setNames(specific[,u],rownames(specific)))
-  }
-  plist
-})
-
-#' @name as
-# '@rdname as' doesn't seem to work; if '@name as' is not repeated:
-# Warning: Block must have a @name
-# Either document an existing object or manually specify with @name
-# [however, '@title' and '@family' don't change their values in first '@name as']
-#' @description When coercing to a \code{pompList}, it extracts the
-#' \code{unit_objects} slot of \code{panelPomp} objects and attaches
-#' associated parameters, converting the resulting list to a \code{pompList} to
-#' help the assignment of pomp methods.
-# @author Edward L. Ionides
-setAs(from="panelPomp",to="pompList",def = function (from) {
-  plist <- as(from,"list")
-  class(plist) <- "pompList"
-  plist
-})
-
 #' @rdname panelPomp_methods
 #' @return
 #' \code{specific()} returns unit-specific parameters as a numeric matrix or
 #'    vector
 #' @examples
-#' ## access and manipulate model parameters and other features
-#' prw <- panelRandomWalk(U = 4)
+#' # access and manipulate model parameters and other features
 #' specific(prw)
-#' @author Jesse Wheeler
 #' @export
 setMethod(
   "specific",
@@ -344,8 +289,6 @@ setMethod(
   }
 )
 
-# TODO: update example.
-# TODO: Implement "shared()<-", use that in "coef" function?
 #' @rdname panelPomp_methods
 #' @examples
 #' # replace unit-specific coefficients
@@ -364,7 +307,6 @@ setMethod(
       all_names <- c(names(object@shared), sp_names)
       uU <- names(object@unit_objects)
 
-      # TODO: Make similar check in vector case
       # Has column that doesn't correspond to any unit-object
       if (!identical(character(0), setdiff(colnames(value), uU)))
         stop(wQuotes(ep, "''value'' contains unit names not in ''object''", "."), call. = FALSE)
@@ -372,18 +314,6 @@ setMethod(
       # Has parameter (row) that isn't part of the object (shared or unit specific)
       if (!identical(character(0), setdiff(rownames(value), all_names)))
         stop(wQuotes(ep, "''value'' contains parameters not found in ''object''", "."), call. = FALSE)
-
-      # TODO: What I want this function to do is the following:
-      #   - Allow specification of a few unit-specific parameters only.
-      #     - If an existing unit-specific parameter is not specified, the
-      #       value is kept at the original value.
-      #     - If an existing unit-specific parameter is specified, the value
-      #       is over-written.
-      #     - If a shared parameter is specified, then change the value from
-      #       shared -> specific.
-      #     - If a non-existent parameter is specified, throw an error (this
-      #       could be either because the unit doesn't exist, or the parameter
-      #       doesn't exist.) (DONE!)
 
       missing_params <- setdiff(sp_names, rownames(value))
       missing_units <- setdiff(uU, colnames(value))
@@ -408,9 +338,6 @@ setMethod(
           param = c(rownames(value), missing_params),
           unit = names(object@unit_objects)
         )
-
-        # TODO: CHECK: Does this work if I change shared -> specific (i.e., add extra specific params)?
-        # Does this work if "value" is a subset of "object@specific"?
 
         # Set default values to original values. We do not drop unit-specific
         # parameters in this method.
@@ -507,10 +434,8 @@ setMethod(
 #' @return
 #' \code{shared()} returns shared parameters from a panelPomp object
 #' @examples
-#' ## access and manipulate model parameters and other features
-#' prw <- panelRandomWalk(U = 4)
+#' # access and manipulate model parameters and other features
 #' shared(prw)
-#' @author Jesse Wheeler
 #' @export
 setMethod(
   "shared",
@@ -522,9 +447,8 @@ setMethod(
 
 #' @rdname panelPomp_methods
 #' @examples
-#' prw <- panelRandomWalk(U = 4)
 #' # replace unit-specific coefficients
-#' shared(prw) <- c(sigmaX=2)
+#' shared(prw) <- c('sigmaY'=2)
 #' shared(prw)
 #' @export
 setMethod(
@@ -555,3 +479,60 @@ setMethod(
     object
   }
 )
+
+## COERCE METHODS
+#' @title Coercing \code{panelPomp} objects as \code{list}, \code{pompList} or
+#' \code{data.frame}
+#' @description When coercing to a \code{data.frame}, it coerces a
+#' \code{panelPomp} into a \code{data.frame}, assuming units share common
+#' variable names.
+## '@rdname' [either 'panelPomp_methods' or 'as'] doesn't seem to work with setAs()
+#' @name as
+#' @family panelPomp methods
+#' @return
+#' An object of class matching that specified in the second argument (\code{to=}).
+#' @author Carles \Breto
+setAs(from="panelPomp",to="data.frame",
+      def = function (from) {
+        x <- lapply(from@unit_objects,as,"data.frame")
+        for (u in seq_along(x)) {
+          x[[u]]$unit <- names(from@unit_objects)[[u]]
+        }
+        do.call(rbind,x)
+      }
+)
+
+#' @name as
+# '@rdname as' doesn't seem to work; if '@name as' is not repeated:
+# Warning: Block must have a @name
+# Either document an existing object or manually specify with @name
+# [however, '@title' and '@family' don't change their values in first '@name as']
+#' @description When coercing to a \code{list}, it extracts the
+#' \code{unit_objects} slot of \code{panelPomp} objects and attaches
+#' associated parameters.
+# @author Carles \Breto, Edward L. Ionides
+setAs(from="panelPomp",to="list",def = function (from) {
+  plist <- from@unit_objects
+  shared <- from@shared
+  specific <- from@specific
+  for(u in 1:length(plist)) {
+    coef(plist[[u]]) <- c(shared,setNames(specific[,u],rownames(specific)))
+  }
+  plist
+})
+
+#' @name as
+# '@rdname as' doesn't seem to work; if '@name as' is not repeated:
+# Warning: Block must have a @name
+# Either document an existing object or manually specify with @name
+# [however, '@title' and '@family' don't change their values in first '@name as']
+#' @description When coercing to a \code{pompList}, it extracts the
+#' \code{unit_objects} slot of \code{panelPomp} objects and attaches
+#' associated parameters, converting the resulting list to a \code{pompList} to
+#' help the assignment of pomp methods.
+# @author Edward L. Ionides
+setAs(from="panelPomp",to="pompList",def = function (from) {
+  plist <- as(from,"list")
+  class(plist) <- "pompList"
+  plist
+})

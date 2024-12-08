@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
-
+\section{Changes in \pkg{panelPomp} version 1.5.0.0}{
+  \itemize{
+    \item Streamlined \code{panelPomp-methods} documentation.
+    \item Added \code{panelMeasles} to \code{panelPomp} models documentation family.
+    \item Fixed redirected link in documentation.
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.4.1.0}{
   \itemize{
     \item Added two new datasets: \code{twentycities} and \code{uk_measles}. These data contain measles incidence data from 20 UK cities.
@@ -8,7 +14,6 @@
     \item Added Aaron Abkemeier as a package contributor.
   }
 }
-
 \section{Changes in \pkg{panelPomp} version 1.4.0.1}{
   \itemize{
     \item Added Jesse Wheeler as one of the package authors in citation file.

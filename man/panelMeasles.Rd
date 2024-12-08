@@ -47,7 +47,15 @@ it is during holidays.
 }
 \examples{
 panelMeasles(units = "London")
+
 }
 \references{
 \He2010
 }
+\seealso{
+Other panelPomp examples: 
+\code{\link{contacts}()},
+\code{\link{panelGompertz}()},
+\code{\link{panelRandomWalk}()}
+}
+\concept{panelPomp examples}

@@ -27,6 +27,8 @@
 #'
 #' @examples
 #' panelMeasles(units = "London")
+#'
+#' @family panelPomp examples
 panelMeasles = function(
     units = c("Bedwellty", "Birmingham", "Bradford", "Bristol", "Cardiff",
               "Consett", "Dalton.in.Furness", "Halesworth", "Hastings", "Hull",

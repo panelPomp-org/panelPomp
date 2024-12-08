@@ -38,6 +38,7 @@ panelGompertz()
 \seealso{
 Other panelPomp examples: 
 \code{\link{contacts}()},
+\code{\link{panelMeasles}()},
 \code{\link{panelRandomWalk}()}
 }
 \author{

@@ -35,6 +35,7 @@ contacts()
 \seealso{
 Other panelPomp examples: 
 \code{\link{panelGompertz}()},
+\code{\link{panelMeasles}()},
 \code{\link{panelRandomWalk}()}
 }
 \author{

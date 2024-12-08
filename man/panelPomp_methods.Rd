@@ -101,6 +101,10 @@ Tools for manipulating \code{panelPomp} objects.
 end time.}
 \item{\code{[]}}{Take a subset of units.}
 \item{\code{[[]]}}{Select the pomp object for a single unit.}
+\item{specific}{Extracts the \code{specific} coefficients.}
+\item{specific<-}{Assigns the \code{specific} coefficients.}
+\item{shared}{Extracts the \code{shared} coefficients.}
+\item{shared<-}{Assigns the \code{shared} coefficients.}
 }
 }
 
@@ -125,18 +129,15 @@ window(prw,start=2,end=4)
 ## subsetting panelPomp objects
 prw[1] # panelPomp of 1 unit (first unit of prw)
 prw[[2]] # pomp object corresponding to unit 2 of prw
-## access and manipulate model parameters and other features
-prw <- panelRandomWalk(U = 4)
+# access and manipulate model parameters and other features
 specific(prw)
 # replace unit-specific coefficients
 specific(prw) <- c("sigmaX[rw1]"=2)
 specific(prw)
-## access and manipulate model parameters and other features
-prw <- panelRandomWalk(U = 4)
+# access and manipulate model parameters and other features
 shared(prw)
-prw <- panelRandomWalk(U = 4)
 # replace unit-specific coefficients
-shared(prw) <- c(sigmaX=2)
+shared(prw) <- c('sigmaY'=2)
 shared(prw)
 }
 \seealso{
@@ -145,7 +146,5 @@ Other panelPomp methods:
 }
 \author{
 Carles \Breto, Aaron A. King, Edward L. Ionides, Jesse Wheeler
-
-Jesse Wheeler
 }
 \concept{panelPomp methods}
