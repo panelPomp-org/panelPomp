@@ -176,7 +176,7 @@ panelMeasles = function(
       me$year >= first_year &
       me$year < (last_year + 1)
     )
-    me$time = time = julian(
+    me$time <- julian(
       me$date,
       origin = as.Date(paste0(first_year, "-01-01"))
     )/365.25 + first_year
@@ -232,7 +232,6 @@ panelMeasles = function(
 
   ## Pomp Construction
   lapply(seq_along(units), function(i){
-    time <- covar_list[[i]]$time
     dat_list[[i]] |>
       pomp::pomp(
         t0 = with(dat_list[[i]], 2*time[1] - time[2]),
