@@ -149,6 +149,14 @@ end time.</p>
 </dd>
 <dt><code>[[]]</code></dt><dd><p>Select the pomp object for a single unit.</p>
 </dd>
+<dt>specific</dt><dd><p>Extracts the <code>specific</code> coefficients.</p>
+</dd>
+<dt>specific&lt;-</dt><dd><p>Assigns the <code>specific</code> coefficients.</p>
+</dd>
+<dt>shared</dt><dd><p>Extracts the <code>shared</code> coefficients.</p>
+</dd>
+<dt>shared&lt;-</dt><dd><p>Assigns the <code>shared</code> coefficients.</p>
+</dd>
 </dl>
 
 
@@ -156,8 +164,6 @@ end time.</p>
 <h3>Author(s)</h3>
 
 <p>Carles Bret&oacute;, Aaron A. King, Edward L. Ionides, Jesse Wheeler
-</p>
-<p>Jesse Wheeler
 </p>
 
 
@@ -190,22 +196,19 @@ window(prw,start=2,end=4)
 ## subsetting panelPomp objects
 prw[1] # panelPomp of 1 unit (first unit of prw)
 prw[[2]] # pomp object corresponding to unit 2 of prw
-## access and manipulate model parameters and other features
-prw &lt;- panelRandomWalk(U = 4)
+# access and manipulate model parameters and other features
 specific(prw)
 # replace unit-specific coefficients
 specific(prw) &lt;- c("sigmaX[rw1]"=2)
 specific(prw)
-## access and manipulate model parameters and other features
-prw &lt;- panelRandomWalk(U = 4)
+# access and manipulate model parameters and other features
 shared(prw)
-prw &lt;- panelRandomWalk(U = 4)
 # replace unit-specific coefficients
-shared(prw) &lt;- c(sigmaX=2)
+shared(prw) &lt;- c('sigmaY'=2)
 shared(prw)
 </code></pre>
 
-<hr /><div style="text-align: center;">[Package <em>panelPomp</em> version 1.4.1.0 <a href="00Index.html">Index</a>]</div></main>
+<hr /><div style="text-align: center;">[Package <em>panelPomp</em> version 1.5.0.0 <a href="00Index.html">Index</a>]</div></main>
 
 </div>
 </body></html>
