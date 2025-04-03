@@ -1,5 +1,17 @@
 _N_e_w_s _f_o_r _t_h_e '_p_a_n_e_l_P_o_m_p' _p_a_c_k_a_g_e
 
+_C_h_a_n_g_e_s _i_n '_p_a_n_e_l_P_o_m_p' _v_e_r_s_i_o_n _1._5._0._2:
+
+        • Created internal functions for in-place modification of
+          ‘pparamArray’ within the ‘mif2’ function. When the number of
+          units and particles is large, this change results in
+          substantial improvements in computational speed by avoiding
+          unecessary memory creation and garbage collection.
+
+_C_h_a_n_g_e_s _i_n '_p_a_n_e_l_P_o_m_p' _v_e_r_s_i_o_n _1._5._0._1:
+
+        • Removed unused variables.
+
 _C_h_a_n_g_e_s _i_n '_p_a_n_e_l_P_o_m_p' _v_e_r_s_i_o_n _1._5._0._0:
 
         • Streamlined ‘panelPomp-methods’ documentation.

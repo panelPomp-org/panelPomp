@@ -1,5 +1,15 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
+\section{Changes in \pkg{panelPomp} version 1.5.0.2}{
+  \itemize{
+    \item Created internal functions for in-place modification of \code{pparamArray} within the \code{mif2} function. When the number of units and particles is large, this change results in substantial improvements in computational speed by avoiding unecessary memory creation and garbage collection.
+  }
+}
+\section{Changes in \pkg{panelPomp} version 1.5.0.1}{
+  \itemize{
+    \item Removed unused variables.
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.5.0.0}{
   \itemize{
     \item Streamlined \code{panelPomp-methods} documentation.
