@@ -178,10 +178,12 @@ mif2.internal <- function (object, Nmif, start, Np, rw.sd, cooling.type,
       pParamMatrix <- output[[unit]]@paramMatrix[shnames, , drop = FALSE]
       # ... and update pparamArray:
       # first for the current unit ...
-      pparamArray[spnames, , unit] <- output[[unit]]@paramMatrix[spnames, , drop = FALSE]
+      # pparamArray[spnames, , unit] <- output[[unit]]@paramMatrix[spnames, , drop = FALSE]
+      pparamArray <- .modifySelf(pparamArray, spnames, output[[unit]]@paramMatrix[spnames, , drop = FALSE], unit)
       # ... then, resample all other units using the mif2d.pomp indices
       if(!block){
-        pparamArray[spnames, , -unit] <- pparamArray[spnames, output[[unit]]@indices, -unit, drop = FALSE]
+        pparamArray <- .modifyOther(pparamArray, spnames, output[[unit]]@indices, unit)
+        # pparamArray[spnames, , -unit] <- pparamArray[spnames, output[[unit]]@indices, -unit, drop = FALSE]
       }
       # Cleaning up: remove the paramMatrix slot from the mif2d.pomp object to minimize memory requirements
       output[[unit]]@paramMatrix <- array(data = numeric(0), dim = c(0, 0))
@@ -353,3 +355,25 @@ setMethod(
       cooling.fraction.50=cooling.fraction.50,rw.sd=rw.sd,block=block,...)
   }
 )
+
+#' Internal function for modifying pparamArray in Mif2
+#'
+#' @param x pparamArray in mif2 internal
+#' @param spnames names of parameters to update
+#' @param indices indices that are the output of a mfi2 call to pomp
+#' @param unit unit in the unit loop
+.modifyOther <- function(x, spnames, indices, unit) {
+  spindices <- 1:length(spnames)
+  .Call(P_updateOther, x, spindices, indices, as.integer(unit), dim(x))
+}
+
+#' Internal function for modifying pparamArray in Mif2
+#'
+#' @param x pparamArray in mif2 internal
+#' @param spnames names of parameters to update
+#' @param M Matrix of replacement values
+#' @param unit unit in the unit loop
+.modifySelf <- function(x, spnames, M, unit) {
+  spindices <- 1:length(spnames)
+  .Call(P_updateSelf, x, spindices, M, as.integer(unit), dim(x))
+}
