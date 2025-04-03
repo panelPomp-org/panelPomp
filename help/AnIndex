@@ -1,4 +1,6 @@
 panelPomp-package	panelPomp-package
+.modifyOther	dot-modifyOther
+.modifySelf	dot-modifySelf
 as	as
 coef,panelPomp-method	panelPomp_methods
 coef<-,panelPomp-method	panelPomp_methods
