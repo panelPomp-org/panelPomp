@@ -30,31 +30,6 @@ setMethod(
   definition = function(object,...) object@unit.logliks
 )
 
-#' Extract Unit Log-Likelihoods
-#'
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @param object an object for which log likelihood values for units can be extracted.
-#' @param ... additional arguments.
-#' @return When given objects of class \code{pfilterd.ppomp}, \code{unitloglik()} returns a \code{numeric} vector.
-#' @examples
-#' # filter, which generates log likelihoods
-#' pfrw <- pfilter(panelRandomWalk(),Np=10)
-#'
-#' # extract log likelihood for each panel unit
-#' unitlogLik(pfrw)
-#'
-#' @export
-setMethod(
-  "unitlogLik",
-  signature = signature(object = "pfilterd.ppomp"),
-  definition = function(object,...) {
-    lifecycle::deprecate_warn("1.2.0", "unitlogLik()", "unitLogLik()")
-    object@unit.logliks
-  }
-)
-
 #' Modifying parameters of filtered objects
 #'
 #' The setter functions for parameters of \code{pfilterd.ppomp} objects
