@@ -1,7 +1,7 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
-Copyright (C) 2024 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu
+R version 4.4.3 (2025-02-28) -- "Trophy Case"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin20
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -34,20 +34,11 @@ Type 'q()' to quit R.
 > unitLogLik(ppf)
        rw1        rw2 
  -8.072918 -10.741827 
-> unitlogLik(ppf)
-       rw1        rw2 
- -8.072918 -10.741827 
-Warning message:
-`unitlogLik()` was deprecated in panelPomp 1.2.0.
-ℹ Please use `unitLogLik()` instead. 
 > set.seed(21125715L)
 > ppf_ <- pfilter(ppf,Np=10)
 > logLik(ppf_)
 [1] -18.81474
 > unitLogLik(ppf_)
-       rw1        rw2 
- -8.072918 -10.741827 
-> unitlogLik(ppf_)
        rw1        rw2 
  -8.072918 -10.741827 
 > 
