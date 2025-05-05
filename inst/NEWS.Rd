@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
+\section{Changes in \pkg{panelPomp} version 1.6.1.0}{
+  \itemize{
+    \item{Modified the \code{plot} function to allow subsetting of units. This function works for objects of class \code{panelPomp}, \code{pfilterd.ppomp}, and \code{mif2d.ppomp}}
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.6.0.0}{
   \itemize{
     \item{Removed deprecated functions.}

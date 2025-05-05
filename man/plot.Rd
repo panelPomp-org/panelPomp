@@ -14,6 +14,7 @@
   mar = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1),
   oma = c(6, 0, 5, 0),
   axes = TRUE,
+  units = NULL,
   ...
 )
 }
@@ -34,6 +35,8 @@ if TRUE, the y-axis (ticks and numbering) should flip from side 2 (left) to 4 (r
 Modify with care!}
 
 \item{axes}{logical; indicates if x- and y- axes should be drawn}
+
+\item{units}{The units of the PanelPOMP to be included in plots. The default of \code{NULL} will build a plot for all units in the object.}
 
 \item{\dots}{ignored or passed to low-level plotting functions}
 }

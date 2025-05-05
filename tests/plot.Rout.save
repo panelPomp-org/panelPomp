@@ -1,6 +1,6 @@
 
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
-Copyright (C) 2024 The R Foundation for Statistical Computing
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin20
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -24,6 +24,20 @@ Type 'q()' to quit R.
 > png(file.path(tempdir(),"plot-%02d.png"),res=100)
 > ppo <- panelPomp:::panelRandomWalk(N=5,U=2)
 > plot(ppo)
+> dev.off()
+null device 
+          1 
+> 
+> png(file.path(tempdir(),"plot-%02d.png"),res=100)
+> plot(ppo, units = c("rw1", "foo"))
+There were 28 warnings (use warnings() to see them)
+> dev.off()
+null device 
+          1 
+> 
+> png(file.path(tempdir(),"plot-%02d.png"),res=100)
+> plot(ppo, units = c("foo", "bar"))
+There were 28 warnings (use warnings() to see them)
 > dev.off()
 null device 
           1 
