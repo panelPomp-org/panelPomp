@@ -30,6 +30,7 @@ setClassUnion(
 ##' @param mar,oma the \code{\link{par}} \code{mar} and \code{oma} settings.
 ##' Modify with care!
 ##' @param axes logical; indicates if x- and y- axes should be drawn
+##' @param units The units of the PanelPOMP to be included in plots. The default of \code{NULL} will build a plot for all units in the object.
 ##' @param \dots ignored or passed to low-level plotting functions
 ##' @return No return value (the function returns \code{NULL}).
 ##' @author Edward L. Ionides
@@ -42,14 +43,32 @@ setMethod(
   definition=function (x, variables,
     panel = lines, nc = NULL, yax.flip = FALSE,
     mar = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1),
-    oma = c(6, 0, 5, 0), axes = TRUE, ...) {
-  U <- length(x)
-  if(U>1) {
-    op <- par(ask=dev.interactive(orNone=TRUE))
+    oma = c(6, 0, 5, 0), axes = TRUE, units = NULL, ...) {
+
+  ep <- wQuotes("in ''plot'': ")
+  unitNames <- names(x)
+
+  if (is.null(units)) {
+    plotNames <- unitNames
+  } else {
+    plotNames <- units[units %in% unitNames]
+
+    if (length(plotNames) == 0L) {
+      warning(ep, wQuotes("Requested units are not part of the object 'x'. All units objects will be plotted."), call.=FALSE)
+      plotNames <- unitNames
+    } else if (any(!units %in% unitNames)) {
+      missingUnits <- units[!units %in% unitNames]
+      warning(ep, wQuotes("Requested units: c(", paste0(missingUnits, collapse = ', '), ") are not part of the object 'x'."), call.=FALSE)
+    }
+  }
+
+  if (length(plotNames) > 1) {
+    op <- par(ask = dev.interactive(orNone = TRUE))
     on.exit(par(op))
   }
-  for(u in 1:U) plot(x=x[[u]],variables=variables,
+
+  for(u in plotNames) plot(x=x[[u]],variables=variables,
       panel=panel,nc=nc,yax.flip=yax.flip,
-      mar=mar,oma=oma,axes=axes,main=names(x)[u],...)
+      mar=mar,oma=oma,axes=axes,main=u,...)
   }
 )

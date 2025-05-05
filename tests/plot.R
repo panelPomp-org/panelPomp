@@ -6,4 +6,12 @@ png(file.path(tempdir(),"plot-%02d.png"),res=100)
 ppo <- panelPomp:::panelRandomWalk(N=5,U=2)
 plot(ppo)
 dev.off()
+
+png(file.path(tempdir(),"plot-%02d.png"),res=100)
+plot(ppo, units = c("rw1", "foo"))
+dev.off()
+
+png(file.path(tempdir(),"plot-%02d.png"),res=100)
+plot(ppo, units = c("foo", "bar"))
+dev.off()
 options(old_o)
