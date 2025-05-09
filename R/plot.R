@@ -54,11 +54,11 @@ setMethod(
     plotNames <- units[units %in% unitNames]
 
     if (length(plotNames) == 0L) {
-      warning(ep, wQuotes("Requested units are not part of the object 'x'. All units objects will be plotted."), call.=FALSE)
+      warning(ep, wQuotes("Requested units are not part of the object ''x''. All units objects will be plotted."), call.=FALSE)
       plotNames <- unitNames
     } else if (any(!units %in% unitNames)) {
       missingUnits <- units[!units %in% unitNames]
-      warning(ep, wQuotes("Requested units: c(", paste0(missingUnits, collapse = ', '), ") are not part of the object 'x'."), call.=FALSE)
+      warning(ep, wQuotes("Requested units: c(", paste0(missingUnits, collapse = ', '), ") are not part of the object ''x''."), call.=FALSE)
     }
   }
 

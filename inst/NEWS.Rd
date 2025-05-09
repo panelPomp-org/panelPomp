@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
+\section{Changes in \pkg{panelPomp} version 1.7.0.0}{
+  \itemize{
+    \item{Internal updates for \code{plot} warning messages and tests.}
+    \item{Release matching CRAN version 1.7.0.0}
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.6.1.0}{
   \itemize{
     \item{Modified the \code{plot} function to allow subsetting of units. This function works for objects of class \code{panelPomp}, \code{pfilterd.ppomp}, and \code{mif2d.ppomp}}
