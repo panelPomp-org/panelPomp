@@ -6,7 +6,7 @@ format:
     code-links:
       - text: GitHub Source
         icon: github
-        href: https://github.com/cbreto/panelPomp
+        href: https://github.com/panelPomp-org/panelPomp
     other-links:
       - text: pomp Package
         href: https://kingaa.github.io/pomp/
@@ -81,7 +81,7 @@ In doing so, it contributes to the goal of the `pomp` project of facilitating th
 #### Comments, bug reports, and requests
 
 Contributions are welcome, as are suggestions for improvement, feature requests, and bug reports.
-Please submit these via the [`panelPomp` issues page](https://github.com/cbreto/panelPomp/issues).
+Please submit these via the [`panelPomp` issues page](https://github.com/panelPomp-org/panelPomp/issues).
 We particularly welcome minimal working examples displaying uninformative, misleading or inacurate error messages. 
 We also welcome suggestions for clarifying obscure passages in the documentation. 
 Help requests are welcome, but please consider before sending requests whether they are regarding the use of `panelPomp` or that of `pomp`. 

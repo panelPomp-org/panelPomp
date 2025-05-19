@@ -6,7 +6,7 @@ format:
     code-links:
       - text: GitHub Source
         icon: github
-        href: https://github.com/cbreto/panelPomp
+        href: https://github.com/panelPomp-org/panelPomp
     other-links:
       - text: pomp Package
         href: https://kingaa.github.io/pomp/
