@@ -8,6 +8,7 @@ project:
     - Governance.md
     - R.css
     - vignettes/*
+    - bunnies.png
 
 website:
   title: "panelPomp"
