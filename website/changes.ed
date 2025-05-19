@@ -4,8 +4,9 @@
   <li><a href="../news.html">Package NEWS</a>.</li>
 .
 13,14d
-9c
-<img class="toplogo" src="../bunnies.png" alt="[PanelPomp logo]" />
+8,9c
+<h1 class="heading-container"> Inference for Panel Partially Observed Markov Processes
+<img class="toplogo" src="../bunnies.png" alt="[PanelPomp logo]" style="width:2cm; height:auto;" />
 .
 6c
 <link rel="stylesheet" type="text/css" href="../R.css" />

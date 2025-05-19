@@ -34,6 +34,17 @@ h1 {
     font-size: 1.5em;
 }
 
+.heading-container {
+            display: flex;
+            align-items: center; /* Vertically center-aligns the image and text */
+            justify-content: space-between; /* Keeps text on the left and image on the right */
+}
+
+.heading-container img {
+            width: 1.5cm;
+            height: auto;
+}
+
 h2 {
     font-size: 1.375em;
 }
@@ -71,7 +82,7 @@ a:link, a:visited {
     text-decoration: none;
 }
 a:hover, a:active {
-    color: #cc3333; 
+    color: #cc3333;
     text-decoration: none;
 }
 a.activated {
