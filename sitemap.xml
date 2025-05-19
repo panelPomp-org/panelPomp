@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://panelPomp-org.github.io/panelPomp/todo.html</loc>
-    <lastmod>2025-05-09T16:31:45.651Z</lastmod>
-  </url>
-  <url>
-    <loc>https://panelPomp-org.github.io/panelPomp/index.html</loc>
-    <lastmod>2025-05-09T16:31:45.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://panelPomp-org.github.io/panelPomp/bibliography.html</loc>
-    <lastmod>2025-05-09T16:31:45.650Z</lastmod>
-  </url>
-  <url>
     <loc>https://panelPomp-org.github.io/panelPomp/Governance.html</loc>
-    <lastmod>2025-05-09T16:34:02.069Z</lastmod>
+    <lastmod>2025-05-19T14:14:06.742Z</lastmod>
   </url>
   <url>
     <loc>https://panelPomp-org.github.io/panelPomp/vignettes/getting-started.html</loc>
-    <lastmod>2025-05-09T16:34:02.293Z</lastmod>
+    <lastmod>2025-05-19T14:14:06.972Z</lastmod>
   </url>
   <url>
     <loc>https://panelPomp-org.github.io/panelPomp/governance.html</loc>
-    <lastmod>2025-05-09T16:31:45.650Z</lastmod>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
   </url>
   <url>
-    <loc>https://panelPomp-org.github.io/panelPomp/news.html</loc>
-    <lastmod>2025-05-09T16:31:45.650Z</lastmod>
+    <loc>https://panelPomp-org.github.io/panelPomp/todo.html</loc>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
   </url>
   <url>
     <loc>https://panelPomp-org.github.io/panelPomp/about.html</loc>
-    <lastmod>2025-05-09T16:31:45.650Z</lastmod>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://panelPomp-org.github.io/panelPomp/index.html</loc>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://panelPomp-org.github.io/panelPomp/news.html</loc>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://panelPomp-org.github.io/panelPomp/bibliography.html</loc>
+    <lastmod>2025-05-19T14:05:01.409Z</lastmod>
   </url>
 </urlset>
