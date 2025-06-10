@@ -12,8 +12,10 @@ The latest version of the package can be installed from this GitHub source using
 
 Installing the current CRAN version is also possible using `install.packages("panelPomp")`
 
+Additional information is on the [**panelPomp** website](https://panelpomp-org.github.io/)
+
 Related packages:
 
 -   [**pomp**](https://github.com/kingaa/pomp/)
--   [**spatPomp**](https://github.com/kidusasfaw/spatPomp)
+-   [**spatPomp**](https://github.com/spatPomp-org/spatPomp)
 -   [**phylopomp**](https://github.com/kingaa/phylopomp/)
