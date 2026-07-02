@@ -53,9 +53,9 @@ panelMeasles(units = "London")
 \He2010
 }
 \seealso{
-Other panelPomp examples: 
-\code{\link{contacts}()},
-\code{\link{panelGompertz}()},
-\code{\link{panelRandomWalk}()}
+Other panelPomp examples:
+\code{\link[=contacts]{contacts()}},
+\code{\link[=panelGompertz]{panelGompertz()}},
+\code{\link[=panelRandomWalk]{panelRandomWalk()}}
 }
 \concept{panelPomp examples}

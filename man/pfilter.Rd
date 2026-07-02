@@ -114,9 +114,9 @@ unitLogLik(pfrw)
 \seealso{
 \pkg{pomp}'s pfilter at \link[pomp:pfilter]{pfilter}, \link{panel_loglik}
 
-Other panelPomp workhorse functions: 
-\code{\link{mif2}()},
-\code{\link{panelPomp}},
+Other panelPomp workhorse functions:
+\code{\link{mif2}},
+\code{\link[=panelPomp]{panelPomp()}},
 \code{\link{panel_loglik}}
 }
 \author{

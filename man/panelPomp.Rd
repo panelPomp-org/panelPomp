@@ -69,10 +69,10 @@ identical(prw, prw2) # TRUE
 \seealso{
 \pkg{pomp}'s constructor at \link[pomp]{pomp}
 
-Other panelPomp workhorse functions: 
-\code{\link{mif2}()},
+Other panelPomp workhorse functions:
+\code{\link{mif2}},
 \code{\link{panel_loglik}},
-\code{\link{pfilter}()}
+\code{\link{pfilter}}
 }
 \author{
 Carles \Breto

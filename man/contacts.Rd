@@ -33,10 +33,10 @@ contacts()
 \vittinghoff1999
 }
 \seealso{
-Other panelPomp examples: 
-\code{\link{panelGompertz}()},
-\code{\link{panelMeasles}()},
-\code{\link{panelRandomWalk}()}
+Other panelPomp examples:
+\code{\link[=panelGompertz]{panelGompertz()}},
+\code{\link[=panelMeasles]{panelMeasles()}},
+\code{\link[=panelRandomWalk]{panelRandomWalk()}}
 }
 \author{
 Edward L. Ionides

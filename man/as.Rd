@@ -22,7 +22,7 @@ associated parameters, converting the resulting list to a \code{pompList} to
 help the assignment of pomp methods.
 }
 \seealso{
-Other panelPomp methods: 
+Other panelPomp methods:
 \code{\link{panelPomp_methods}}
 }
 \author{

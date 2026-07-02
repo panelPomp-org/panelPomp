@@ -34,6 +34,20 @@ test(
   c(NSEQ, 6L)
 )
 
+test(
+  {
+    df <- runif_panel_design(
+      lower = c('a[u1]' = 0, 'b' = 10, 'a[u2]' = 0.5),
+      upper = c('a[u1]' = 1, 'b' = 15, 'a[u2]' = 0.75),
+      specific_names = c('a'),
+      unit_names = paste0(rep('u', 2), 1:2),
+      nseq = NSEQ
+    )
+    c(nrow(df), ncol(df))
+  },
+  c(NSEQ, 3L)
+)
+
 err <- wQuotes("Error : in ''runif_panel_design'': upper values should be at least as large as lower ones.\n")
 
 test(

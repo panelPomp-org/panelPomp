@@ -1,7 +1,7 @@
 Package: panelPomp
 Type: Package
 Title: Inference for Panel Partially Observed Markov Processes
-Version: 1.7.0.0
+Version: 1.7.0.1
 Authors@R: c(person(given="Carles",family="Breto",role="aut",email="carles.breto@uv.es",comment=c(ORCID="0000-0003-4695-4902")),
 	person(given=c("Edward","L."),family="Ionides",role="aut",comment=c(ORCID="0000-0002-4190-0174")),
 	person(given=c("Aaron","A."),family="King",role="aut",comment=c(ORCID="0000-0001-6159-3207")),
@@ -14,7 +14,6 @@ Depends:
     pomp(>= 4.5.2)
 Imports:
     methods
-RoxygenNote: 7.3.2
 Encoding: UTF-8
 Collate: 
     'panelPomp-package.R'
@@ -47,3 +46,4 @@ Suggests:
     bookdown
 VignetteBuilder: knitr
 LazyData: true
+Config/roxygen2/version: 8.0.0

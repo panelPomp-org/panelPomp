@@ -36,10 +36,10 @@ panelGompertz()
 \king2016
 }
 \seealso{
-Other panelPomp examples: 
-\code{\link{contacts}()},
-\code{\link{panelMeasles}()},
-\code{\link{panelRandomWalk}()}
+Other panelPomp examples:
+\code{\link[=contacts]{contacts()}},
+\code{\link[=panelMeasles]{panelMeasles()}},
+\code{\link[=panelRandomWalk]{panelRandomWalk()}}
 }
 \author{
 Edward L. Ionides, Carles \Breto

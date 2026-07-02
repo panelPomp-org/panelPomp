@@ -31,10 +31,10 @@ walk model.
 panelRandomWalk()
 }
 \seealso{
-Other panelPomp examples: 
-\code{\link{contacts}()},
-\code{\link{panelGompertz}()},
-\code{\link{panelMeasles}()}
+Other panelPomp examples:
+\code{\link[=contacts]{contacts()}},
+\code{\link[=panelGompertz]{panelGompertz()}},
+\code{\link[=panelMeasles]{panelMeasles()}}
 }
 \author{
 Edward L. Ionides, Carles \Breto

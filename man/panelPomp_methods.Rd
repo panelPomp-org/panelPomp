@@ -141,8 +141,8 @@ shared(prw) <- c('sigmaY'=2)
 shared(prw)
 }
 \seealso{
-Other panelPomp methods: 
-\code{\link{as}()}
+Other panelPomp methods:
+\code{\link{as}}
 }
 \author{
 Carles \Breto, Aaron A. King, Edward L. Ionides, Jesse Wheeler
