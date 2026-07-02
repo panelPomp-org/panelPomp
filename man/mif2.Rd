@@ -131,10 +131,10 @@ traces(mmp)
 \pkg{pomp}'s mif2 at \link[pomp]{mif2},
 \link{panel_loglik}
 
-Other panelPomp workhorse functions: 
-\code{\link{panelPomp}},
+Other panelPomp workhorse functions:
+\code{\link[=panelPomp]{panelPomp()}},
 \code{\link{panel_loglik}},
-\code{\link{pfilter}()}
+\code{\link{pfilter}}
 }
 \author{
 Carles \Breto

@@ -42,10 +42,10 @@ logLik(ulls,repMargin=1,first="aver",aver="logmeanexp")
 logLik(ulls,repMargin=1,first="aggr",aver="mean",se=TRUE)
 }
 \seealso{
-Other panelPomp workhorse functions: 
-\code{\link{mif2}()},
-\code{\link{panelPomp}},
-\code{\link{pfilter}()}
+Other panelPomp workhorse functions:
+\code{\link{mif2}},
+\code{\link[=panelPomp]{panelPomp()}},
+\code{\link{pfilter}}
 }
 \author{
 Carles \Breto

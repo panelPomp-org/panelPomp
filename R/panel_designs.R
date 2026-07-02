@@ -72,28 +72,40 @@ runif_panel_design <- function (
     if (missing(specific_names) | missing(unit_names))
       stop(wQuotes(ep,"If used, both ''specific_names'' and ''unit_names'' must be provided","."),call.=FALSE)
 
-    if (any(!specific_names %in% lnames))
-      stop(wQuotes(ep,"No bounds were given for some parameters in ''specific_names''","."),call.=FALSE)
+    if (any(!specific_names %in% lnames)) {
+      missing_sp <- specific_names[!specific_names %in% lnames]
+      sp_names_unit <- paste0(missing_sp, '[', rep(unit_names, length(missing_sp)),']')
+      if (any(!sp_names_unit %in% lnames)) {
+        stop(wQuotes(ep,"No bounds were given for some parameters in ''specific_names''","."),call.=FALSE)
+      }
+
+
+    }
 
     lwr_tmp <- lower[!lnames %in% specific_names]
     upr_tmp <- upper[!lnames %in% specific_names]
     upr_tmp <- upr_tmp[names(lwr_tmp)]
 
-    lwr_spec <- rep(
-      lower[lnames %in% specific_names], each = length(unit_names)
-    )
+    if (any(lnames %in% specific_names)) {
+      lwr_spec <- rep(
+        lower[lnames %in% specific_names], each = length(unit_names)
+      )
 
-    unit_labs <- paste0("[", rep(unit_names, length(unique(names(lwr_spec)))), "]")
-    names(lwr_spec) <- paste0(names(lwr_spec), unit_labs)
+      unit_labs <- paste0("[", rep(unit_names, length(unique(names(lwr_spec)))), "]")
+      names(lwr_spec) <- paste0(names(lwr_spec), unit_labs)
 
-    upr_spec <- rep(
-      upper[lnames %in% specific_names], each = length(unit_names)
-    )
+      upr_spec <- rep(
+        upper[lnames %in% specific_names], each = length(unit_names)
+      )
 
-    names(upr_spec) <- names(lwr_spec)
+      names(upr_spec) <- names(lwr_spec)
 
-    lower <- c(lwr_tmp, lwr_spec[!names(lwr_spec) %in% names(lwr_tmp)])
-    upper <- c(upr_tmp, upr_spec[!names(lwr_spec) %in% names(lwr_tmp)])
+      lower <- c(lwr_tmp, lwr_spec[!names(lwr_spec) %in% names(lwr_tmp)])
+      upper <- c(upr_tmp, upr_spec[!names(lwr_spec) %in% names(lwr_tmp)])
+    } else {
+      lower <- lwr_tmp
+      upper <- upr_tmp
+    }
 
     lower <- lower[sort(names(lower))]
     upper <- upper[sort(names(upper))]
