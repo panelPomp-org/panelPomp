@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Getting Started – panelPomp</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2d2c3c1dc8fcebd689918bbad00a5354.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d42e3a450557161d5337326f150af9d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -258,8 +261,8 @@ window.Quarto = {
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(panelPomp)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: pomp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(panelPomp)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: pomp</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -359,7 +362,7 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 </ul>
 <p>This particular model class has a constructor function <code>gompertz()</code> from the <code>pomp</code> package. Here, we create 5 unique instances of this model, and use these instances to create a single <code>panelPomp</code> object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> pomp<span class="sc">::</span><span class="fu">gompertz</span>()  <span class="co"># Using default values </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> pomp<span class="sc">::</span><span class="fu">gompertz</span>()  <span class="co"># Using default values </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> pomp<span class="sc">::</span><span class="fu">gompertz</span>(<span class="at">K =</span> <span class="dv">2</span>, <span class="at">r =</span> <span class="fl">0.01</span>)  <span class="co"># Overwriting some of the defaults </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> pomp<span class="sc">::</span><span class="fu">gompertz</span>(<span class="at">K =</span> <span class="fl">1.5</span>, <span class="at">sigma =</span> <span class="fl">0.15</span>, <span class="at">X_0 =</span> <span class="dv">5</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> pomp<span class="sc">::</span><span class="fu">gompertz</span>(<span class="at">K =</span> <span class="fl">1.5</span>, <span class="at">r =</span> <span class="fl">0.05</span>, <span class="at">X_0 =</span> <span class="dv">5</span>)</span>
@@ -367,11 +370,11 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>panelMod1 <span class="ot">&lt;-</span> <span class="fu">panelPomp</span>(</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">object =</span> <span class="fu">list</span>(mod1, mod2, mod3, mod4, mod5)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One important thing to note above the above construction is that each individual model already has parameter values present. When this is the case, the <code>panelPomp()</code> constructor sets all parameters to be unit specific:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">specific</span>(panelMod1))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">specific</span>(panelMod1))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          unit</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; parameter unit1 unit2 unit3 unit4 unit5</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     K       1.0  2.00  1.50  1.50  5.00</span></span>
@@ -380,11 +383,11 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     tau     0.1  0.10  0.10  0.10  0.10</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     X_0     1.0  1.00  5.00  5.00  1.00</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">shared</span>(panelMod1))</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the <code>panelMod1</code> object, all five parameters are listed as <em>unit specific</em>. Notably, because <span class="math inline">\(\tau\)</span> was not modified in any of the unit specific objects, it has the same value across all five units. In such cases, it might make sense to list parameters that have the same value across all units as <em>shared</em> parameters, which can be done in the model constructor:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>panelMod2 <span class="ot">&lt;-</span> <span class="fu">panelPomp</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>panelMod2 <span class="ot">&lt;-</span> <span class="fu">panelPomp</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">object =</span> <span class="fu">list</span>(mod1, mod2, mod3, mod4, mod5),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">shared =</span> <span class="fu">c</span>(<span class="st">"tau"</span> <span class="ot">=</span> <span class="fl">0.1</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -398,12 +401,12 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     X_0     1.0  1.00  5.00  5.00  1.00</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shared</span>(panelMod2)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tau </span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this case we did not need to explicitly specify unit-specific parameters; if parameter values are present in the unit <code>pomp</code> objects that comprise the panel, parameters are assumed to be unit-specific unless otherwise specified. However, it is possible to explicitly provide a matrix of unit specific parameters in the constructor, if desired. This is especially important if the individual <code>pomp</code> objects that make up the panel have missing parameter values.</p>
 <p>Unit-specific parameters can be expressed in two ways: as a matrix with rows corresponding to parameter values and columns the corresponding unit (as seen above), or as a named numeric vector that follows the convention <code>&lt;param&gt;[&lt;unit name&gt;]</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2, <span class="at">format =</span> <span class="st">'vector'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2, <span class="at">format =</span> <span class="st">'vector'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     K[unit1]     r[unit1] sigma[unit1]   X_0[unit1]     K[unit2]     r[unit2] </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1.00         0.10         0.10         1.00         2.00         0.01 </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sigma[unit2]   X_0[unit2]     K[unit3]     r[unit3] sigma[unit3]   X_0[unit3] </span></span>
@@ -411,11 +414,11 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     K[unit4]     r[unit4] sigma[unit4]   X_0[unit4]     K[unit5]     r[unit5] </span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1.50         0.05         0.10         5.00         5.00         0.10 </span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sigma[unit5]   X_0[unit5] </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         0.08         1.00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         0.08         1.00</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>It is often convenient to modify which parameters are shared and which are unit-specific on existing <code>panelPomp</code> objects rather than creating new objects from scratch. This can be done with the <code>shared&lt;-</code> and <code>specific&lt;-</code> setter functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shared</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'r'</span> <span class="ot">=</span> <span class="fl">0.05</span>, <span class="st">'sigma'</span> <span class="ot">=</span> <span class="fl">0.1</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shared</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'r'</span> <span class="ot">=</span> <span class="fl">0.05</span>, <span class="st">'sigma'</span> <span class="ot">=</span> <span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'tau[unit1]'</span> <span class="ot">=</span> <span class="fl">0.11</span>, <span class="st">'tau[unit4]'</span> <span class="ot">=</span> <span class="fl">0.09</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">shared</span>(panelMod2))</span>
@@ -426,11 +429,11 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; param unit1 unit2 unit3 unit4 unit5</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   K    1.00   2.0   1.5  1.50   5.0</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tau  0.11   0.1   0.1  0.09   0.1</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   X_0  1.00   1.0   5.0  5.00   1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   X_0  1.00   1.0   5.0  5.00   1.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Notice above that if a shared parameter (<code>tau</code>) is changed to a unit-specific parameter and not all values of the unit-specific parameter are explicitly provided, the parameters that are not specified default to the original shared value. The unit-specific setter function also works in matrix format:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="fl">1.24</span>, <span class="fl">1.78</span>), </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(   <span class="dv">2</span>,    <span class="dv">3</span>)),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>, </span>
@@ -445,16 +448,18 @@ Y_n \sim \text{Lognormal}\big(\log X_n, \tau \big).
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; param unit1 unit2 unit3 unit4 unit5</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   K    1.00  1.24   1.5  1.78   5.0</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   X_0  1.00  2.00   5.0  3.00   1.0</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tau  0.11  0.10   0.1  0.09   0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tau  0.11  0.10   0.1  0.09   0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Neither the <code>shared&lt;-</code> nor the <code>specific&lt;-</code> setter functions allow a user to add new parameters (or unit names) that are not already part of the model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shared</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"foo"</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: in 'shared&lt;-': 'value' contains parameters not found in 'object'.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shared</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"foo"</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! in 'shared&lt;-': 'value' contains parameters not found in 'object'.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tau[unit6]"</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: in 'specific&lt;-': 'value' contains unit names not in 'object'.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specific</span>(panelMod2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tau[unit6]"</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! in 'specific&lt;-': 'value' contains unit names not in 'object'.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- 
 ### Constructing `pomp` objects to be used for `panelPomp`
@@ -620,13 +625,14 @@ lik = dlnorm(Y,log(X),tau,give_log);
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
