@@ -44,3 +44,5 @@ check
 ^CRAN-SUBMISSION$
 ^\.github$
 ^data-raw$
+^\.positai$
+^\.claude$

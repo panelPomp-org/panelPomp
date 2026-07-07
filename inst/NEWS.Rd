@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for the \pkg{panelPomp} package}
+\section{Changes in \pkg{panelPomp} version 1.8.0.0}{
+  \itemize{
+    \item{Updated maintaner's email address to new institution}
+    \item{Added feature to \code{runif_panel_design} for specifying unit-specific parameter bounds.}
+  }
+}
 \section{Changes in \pkg{panelPomp} version 1.7.0.0}{
   \itemize{
     \item{Internal updates for \code{plot} warning messages and tests.}
