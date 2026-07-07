@@ -26,5 +26,5 @@
 #'
 #' @references
 #' \Korevaar2020
-#' @source <https://rs.figshare.com/collections/Supplementary_material_from_Structure_space_and_size_competing_drivers_of_variation_in_urban_and_rural_measles_transmission_/5036567/1>
+#' @source \doi{10.1098/rsif.2020.0010}
 "uk_measles"
